@@ -260,7 +260,7 @@ button:disabled{
 </div>
 
 <p id="loading" class="status">
- Firebase ချိတ်ဆက်နေပါသည်...
+ ချိတ်ဆက်နေပါသည်...
 </p>
 
 <!-- Login -->
@@ -298,7 +298,7 @@ button:disabled{
  <strong>Online စာရင်း</strong>
  <div id="accountEmail" class="small"></div>
  <p id="connectionStatus" class="small">
-  Firebase ချိတ်ဆက်နေပါသည်...
+  ချိတ်ဆက်နေပါသည်...
  </p>
 </div>
 
@@ -425,11 +425,7 @@ button:disabled{
 </button>
 
 <p class="small">
- Save နှိပ်ပြီး Firebase Online Database
- ထဲသို့ သိမ်းဆည်းပါ။
- ဖုန်းနှစ်လုံးတွင် တူညီသော Account
- ဖြင့် Login ဝင်ထားလျှင်
- စာရင်းအလိုအလျောက် ပြန်ပေါ်ပါမည်။
+ Save နှိပ်ပါ။ Data များကို သိမ်းထားပါမည်။
 </p>
 
 </div>
@@ -574,7 +570,7 @@ function updateSaveButton(){
  btn.disabled=saving;
  btn.textContent=saving
   ?"သိမ်းဆည်းနေပါသည်..."
-  :"💾 Save မည် (Online သိမ်းဆည်းရန်)";
+  :"💾 Save မည်။";
 }
 
 function draftKey(){
@@ -612,8 +608,8 @@ function markDirty(){
 function updateConnection(){
  el("connectionStatus").textContent=
   connected
-  ?"● Firebase Online ချိတ်ဆက်ထားပါသည်"
-  :"● Firebase ချိတ်ဆက်မှု မရှိသေးပါ";
+  ?"● Online ချိတ်ဆက်ထားပါသည်"
+  :"● ချိတ်ဆက်မှု မရှိသေးပါ ။ Vpn လိုအပ်ပါသည်။";
 }
 
 function lockInputs(value){
