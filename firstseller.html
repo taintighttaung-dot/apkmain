@@ -706,8 +706,8 @@ auth.onAuthStateChanged(function(user){
   if(session!==currentSession)return;
   connected=snap.val()===true;
   el("connectionStatus").textContent=connected
-   ?"● Firebase Online ချိတ်ဆက်ထားပါသည်"
-   :"● Firebase ချိတ်ဆက်မှု မရှိပါ";
+   ?" 🟢  Online ချိတ်ဆက်ထားပါသည်"
+   :"●  ချိတ်ဆက်မှု မရှိပါ ။ Vpn ဖွင့်ပေးပါ။";
  };
 
  // Connection listener အတွက် cleanup
@@ -949,7 +949,7 @@ async function writeOnline(newItems){
  saving=true;
  lockInputs(true);
  el("saveBtn").disabled=true;
- status("Firebase ထဲ သိမ်းဆည်းနေပါသည်...");
+ status("Database ထဲ သိမ်းဆည်းနေပါသည်...");
 
  var expected=revision;
  var copy=JSON.parse(JSON.stringify(newItems));
@@ -992,7 +992,7 @@ async function writeOnline(newItems){
    render();
 
    status(
-    "✓ Firebase Online Database ထဲ သိမ်းဆည်းပြီးပါပြီ။"
+    "✓ Online Database ထဲ သိမ်းဆည်းပြီးပါပြီ။"
    );
   }
  }catch(e){
@@ -1018,7 +1018,7 @@ el("saveBtn").onclick=function(){
 
 el("resetBtn").onclick=function(){
  if(!confirm(
-  "အရောင်း ၁ စာရင်းအားလုံးကို Firebase မှပါ အပြီးရှင်းလင်းမှာ သေချာပါသလား။"
+  "အရောင်း ၁ စာရင်းအားလုံးကို Database မှပါ အပြီးရှင်းလင်းမှာ သေချာပါသလား။"
  ))return;
 
  writeOnline([fresh()]);
