@@ -647,8 +647,8 @@ auth.onAuthStateChanged(function(user){
    if(session!==currentSession)return;
    connected=snap.val()===true;
    el("connectionStatus").textContent=connected
-    ?"● Firebase Online ချိတ်ဆက်ထားပါသည်"
-    :"● Firebase ချိတ်ဆက်မှု မရှိပါ";
+    ?"🟢 Online ချိတ်ဆက်ထားပါသည်"
+    :"● ချိတ်ဆက်မှု မရှိပါ ။ Vpn ဖွင့်ပေးပါ။";
   });
 
  // Firebase Listener
