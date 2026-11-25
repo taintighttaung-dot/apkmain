@@ -5,16 +5,12 @@
 <meta charset="UTF-8">
 <meta name="viewport"
  content="width=device-width,initial-scale=1">
+
 <title>ပင်မ - မုန့်မူရင်းစာရင်း</title>
 
 <style>
-*{
- box-sizing:border-box;
-}
-
-[hidden]{
- display:none!important;
-}
+*{box-sizing:border-box}
+[hidden]{display:none!important}
 
 body{
  margin:0;
@@ -27,6 +23,7 @@ body{
 .container{
  max-width:650px;
  margin:auto;
+ padding-bottom:25px;
 }
 
 .header{
@@ -38,14 +35,8 @@ body{
  margin-bottom:18px;
 }
 
-.header h2{
- margin:0 0 8px;
-}
-
-.header p{
- margin:0;
- font-size:14px;
-}
+.header h2{margin:0 0 8px}
+.header p{margin:0;font-size:14px}
 
 .card{
  background:white;
@@ -55,22 +46,131 @@ body{
  box-shadow:0 4px 15px #0000000d;
 }
 
+/* Main Account Header */
+
+.account-row{
+ display:flex;
+ align-items:center;
+ justify-content:space-between;
+ gap:12px;
+ flex-wrap:wrap;
+}
+
+.account-row h3{
+ margin:0;
+}
+
+.account-email{
+ color:#65786d;
+ font-size:13px;
+ overflow-wrap:anywhere;
+ text-align:right;
+}
+
+/* Firebase Connection */
+
+.connection-row{
+ display:flex;
+ align-items:center;
+ gap:10px;
+ margin-top:22px;
+ font-size:16px;
+ font-weight:bold;
+}
+
+.connection-dot{
+ width:12px;
+ height:12px;
+ border-radius:50%;
+ background:#999;
+ flex-shrink:0;
+}
+
+.connection-dot.online{
+ background:#18b65d;
+ animation:blink 1.2s infinite;
+ box-shadow:0 0 7px #18b65d;
+}
+
+.connection-dot.offline{
+ background:#e53935;
+ animation:none;
+ box-shadow:none;
+}
+
+@keyframes blink{
+ 0%,100%{
+  opacity:1;
+  box-shadow:0 0 9px #18b65d;
+ }
+ 50%{
+  opacity:.3;
+  box-shadow:0 0 2px #18b65d;
+ }
+}
+
+#connectionText.online{
+ color:#176b51;
+}
+
+#connectionText.offline{
+ color:#c62828;
+}
+
+/* Voucher Buttons */
+
+.voucher-links{
+ margin-top:24px;
+ border-top:1px solid #e1e9e3;
+ padding-top:20px;
+}
+
+.voucher-links h3{
+ margin:0 0 15px;
+ font-size:18px;
+}
+
+.voucher-grid{
+ display:grid;
+ grid-template-columns:1fr 1fr;
+ gap:12px;
+}
+
+.voucher-btn{
+ display:flex;
+ align-items:center;
+ justify-content:center;
+ text-decoration:none;
+ text-align:center;
+ padding:17px 8px;
+ border-radius:12px;
+ background:#176b51;
+ color:white;
+ font-size:16px;
+ font-weight:bold;
+ min-height:60px;
+}
+
+.voucher-btn:active{
+ background:#11543f;
+}
+
+/* Product Cards */
+
 .top{
  display:flex;
  justify-content:space-between;
  align-items:center;
- gap:10px;
+ gap:12px;
 }
 
-h3{
- margin:0 0 12px;
-}
+h3{margin:0 0 12px}
 
 label{
  display:block;
  margin:14px 0 7px;
- color:#52645a;
  font-size:14px;
+ color:#52645a;
 }
 
 input{
@@ -80,6 +180,7 @@ input{
  border:1px solid #d2ddd6;
  border-radius:11px;
  background:white;
+ color:#263b32;
  font-size:16px;
  outline:none;
 }
@@ -97,11 +198,11 @@ input:focus{
 }
 
 button{
- cursor:pointer;
+ padding:15px;
+ border-radius:11px;
  font-size:15px;
  font-weight:bold;
- border-radius:11px;
- padding:15px;
+ cursor:pointer;
 }
 
 button:disabled{
@@ -131,31 +232,21 @@ button:disabled{
 }
 
 .status{
- margin:12px 0;
  font-size:14px;
  line-height:1.6;
+ margin:12px 0;
+ color:#176b51;
  overflow-wrap:anywhere;
 }
 
-.success{
- color:#176b51;
-}
+.error{color:#c62828}
 
-.error{
- color:#c62828;
-}
-
-.small{
- color:#64766b;
- font-size:13px;
- line-height:1.6;
-}
-
-.info{
- background:#e8f5ee;
- padding:15px;
- border-radius:12px;
- margin-top:15px;
+.summary{
+ background:#176b51;
+ color:white;
+ padding:20px;
+ border-radius:18px;
+ margin:20px 0;
 }
 
 .line{
@@ -163,8 +254,8 @@ button:disabled{
  justify-content:space-between;
  align-items:center;
  gap:12px;
- padding:10px 0;
- border-bottom:1px solid #d4e5db;
+ padding:12px 0;
+ border-bottom:1px solid #ffffff35;
 }
 
 .line:last-child{
@@ -181,31 +272,22 @@ button:disabled{
  bottom:8px;
  z-index:10;
  padding:12px;
- background:#ffffffed;
  border-radius:15px;
+ background:#ffffffef;
  box-shadow:0 4px 15px #0002;
  margin-bottom:18px;
 }
 
-.summary{
- background:#176b51;
- color:white;
- padding:20px;
- border-radius:18px;
- margin-bottom:18px;
-}
-
-.summary .line{
- border-color:#ffffff35;
-}
-
-.warning{
- color:#ae6500;
- font-size:13px;
+.sticky button{
+ min-height:56px;
+ font-size:17px;
 }
 
 @media(max-width:350px){
  .grid{
+  grid-template-columns:1fr;
+ }
+ .voucher-grid{
   grid-template-columns:1fr;
  }
 }
@@ -215,20 +297,20 @@ button:disabled{
 <body>
 <div class="container">
 
-<!-- Header -->
+<!-- MAIN TITLE -->
 
 <div class="header">
  <h2>ပင်မ</h2>
  <p>မုန့်အမျိုးအစားနှင့် မူရင်းစာရင်း</p>
 </div>
 
-<!-- Loading -->
+<!-- LOADING -->
 
 <div id="loading" class="card">
  Firebase ချိတ်ဆက်နေပါသည်...
 </div>
 
-<!-- Login -->
+<!-- LOGIN -->
 
 <div id="loginBox" class="card" hidden>
 
@@ -236,16 +318,14 @@ button:disabled{
 
  <form id="loginForm">
 
-  <label for="email">Email</label>
-
+  <label>Email</label>
   <input
    id="email"
    type="email"
    autocomplete="username"
    required>
 
-  <label for="password">Password</label>
-
+  <label>Password</label>
   <input
    id="password"
    type="password"
@@ -261,48 +341,84 @@ button:disabled{
 
  </form>
 
- <p id="loginStatus"
-  class="status"></p>
+ <p id="loginStatus" class="status"></p>
 
 </div>
 
-<!-- Main -->
+<!-- MAIN APP -->
 
 <div id="appBox" hidden>
 
+<!-- ACCOUNT AND VOUCHERS -->
+
 <div class="card">
 
- <h3>ပင်မ မုန့်စာရင်း</h3>
+ <div class="account-row">
 
- <div id="account" class="small"></div>
+  <h3>ပင်မ မုန့်စာရင်း</h3>
 
- <p id="connection" class="status"></p>
+  <div id="account"
+   class="account-email">
+  </div>
 
- <p class="small">
-  မုန့်အမျိုးအစား အရေအတွက်
-  ကန့်သတ်မထားပါ။
-  ရှိသလောက် ထည့်နိုင်ပါသည်။
- </p>
+ </div>
+
+ <!-- CONNECTED INDICATOR -->
+
+ <div class="connection-row">
+
+  <span
+   id="connectionDot"
+   class="connection-dot">
+  </span>
+
+  <span id="connectionText">
+   Connecting...
+  </span>
+
+ </div>
+
+ <!-- VOUCHER LINKS -->
+
+ <div class="voucher-links">
+
+  <h3>ဘောင်ချာများ ကြည့်ရန်</h3>
+
+  <div class="voucher-grid">
+
+   <a
+    class="voucher-btn"
+    href="firstseller.html#voucher">
+    အရောင်း ၁
+   </a>
+
+   <a
+    class="voucher-btn"
+    href="secondseller.html#voucher">
+    အရောင်း ၂
+   </a>
+
+  </div>
+
+ </div>
 
 </div>
 
-<!-- Items -->
+<!-- PRODUCT ITEMS -->
 
 <div id="items"></div>
 
-<!-- Add Button -->
+<!-- ADD PRODUCT -->
 
 <div class="card">
 
- <button
-  id="addBtn"
-  class="add">
+ <button id="addBtn" class="add">
   + မုန့်အမျိုးအစား ထပ်ထည့်ရန်
  </button>
 
 </div>
 
-<!-- Summary -->
+<!-- SUMMARY -->
 
 <div class="summary">
 
@@ -325,184 +441,111 @@ button:disabled{
 
 </div>
 
-<!-- Save -->
+<!-- SAVE -->
 
 <div class="sticky">
 
- <button
-  id="saveBtn"
-  class="primary">
+ <button id="saveBtn" class="primary">
   💾 Save မည်
  </button>
 
- <p
-  id="saveStatus"
+ <p id="saveStatus"
   class="status"
-  role="status">
- </p>
+  role="status"></p>
 
 </div>
 
 </div>
 </div>
 
-<!-- Firebase Error Detection -->
+<!-- FIREBASE SDK -->
 
-<script>
-window.addEventListener(
- "error",
- function(e){
-
-  var loading =
-   document.getElementById("loading");
-
-  if(loading && !loading.hidden){
-
-   loading.textContent =
-    "JavaScript Error: " +
-    (e.message || "Unknown error");
-
-   loading.className = "card error";
-  }
- }
-);
-</script>
-
-<!-- Firebase SDK -->
-
-<script
- src="https://www.gstatic.com/firebasejs/10.12.5/firebase-app-compat.js">
-</script>
-
-<script
- src="https://www.gstatic.com/firebasejs/10.12.5/firebase-auth-compat.js">
-</script>
-
-<script
- src="https://www.gstatic.com/firebasejs/10.12.5/firebase-database-compat.js">
-</script>
+<script src="https://www.gstatic.com/firebasejs/10.12.5/firebase-app-compat.js"></script>
+<script src="https://www.gstatic.com/firebasejs/10.12.5/firebase-auth-compat.js"></script>
+<script src="https://www.gstatic.com/firebasejs/10.12.5/firebase-database-compat.js"></script>
 
 <script>
 (function(){
 "use strict";
 
-/* Elements */
+/* HELPER */
 
-var $ = function(id){
+var $=function(id){
  return document.getElementById(id);
 };
 
-/* SDK Check */
+/* FIREBASE CHECK */
 
-if(
- !window.firebase ||
- !firebase.auth ||
- !firebase.database
-){
+if(!window.firebase||
+ !firebase.auth||
+ !firebase.database){
 
- $("loading").textContent =
+ $("loading").textContent=
   "Firebase SDK မဖွင့်နိုင်ပါ။ Internet စစ်ပါ။";
 
- $("loading").className =
-  "card error";
-
+ $("loading").className="card error";
  return;
 }
 
-/* Firebase Configuration */
+/* FIREBASE CONFIG */
 
-var firebaseConfig = {
-
- apiKey:
-  "AIzaSyAZK7ntdtiSDZ9eC6eAr3xKDK_DGJnNVVU",
-
- authDomain:
-  "seller-b4dfa.firebaseapp.com",
-
- databaseURL:
-  "https://seller-b4dfa-default-rtdb.firebaseio.com",
-
- projectId:
-  "seller-b4dfa",
-
- storageBucket:
-  "seller-b4dfa.firebasestorage.app",
-
- messagingSenderId:
-  "632319829206",
-
- appId:
-  "1:632319829206:web:ae8ea88684ccb061311577",
-
- measurementId:
-  "G-56VDJH0YVJ"
-
+var firebaseConfig={
+ apiKey:"AIzaSyAZK7ntdtiSDZ9eC6eAr3xKDK_DGJnNVVU",
+ authDomain:"seller-b4dfa.firebaseapp.com",
+ databaseURL:"https://seller-b4dfa-default-rtdb.firebaseio.com",
+ projectId:"seller-b4dfa",
+ storageBucket:"seller-b4dfa.firebasestorage.app",
+ messagingSenderId:"632319829206",
+ appId:"1:632319829206:web:ae8ea88684ccb061311577",
+ measurementId:"G-56VDJH0YVJ"
 };
 
-/* Initialize */
+/* INITIALIZE */
 
 var app;
 
 try{
-
- app = firebase.app("mainSellerApp");
-
+ app=firebase.app("mainSellerApp");
 }catch(e){
-
- app = firebase.initializeApp(
+ app=firebase.initializeApp(
   firebaseConfig,
   "mainSellerApp"
  );
-
 }
 
-var auth = app.auth();
+var auth=app.auth();
+var db=app.database();
 
-var db = app.database();
+var catalogRef=db.ref("catalog");
 
-/*
- Shared Catalog
- Seller 1 နှင့် Seller 2 တို့
- ဒီစာရင်းကို ဖတ်မည်။
-*/
+/* VARIABLES */
 
-var catalogRef = db.ref("catalog");
+var items=[];
+var revision=0;
 
-var items = [];
+var ready=false;
+var dirty=false;
+var saving=false;
+var connected=false;
+var conflict=false;
 
-var revision = 0;
+var unsubscribe=null;
+var connectionCallback=null;
+var session=0;
 
-var ready = false;
-var dirty = false;
-var saving = false;
-var connected = false;
-var conflict = false;
-
-var unsubscribe = null;
-var connectionCallback = null;
-
-/* Helpers */
+/* NEW PRODUCT */
 
 function fresh(){
-
  return {
-
-  id:
-   "p_" +
-   Date.now().toString(36) +
+  id:"p_"+Date.now().toString(36)+
    Math.random().toString(36).slice(2),
-
   name:"",
-
   baseQty:"",
-
   baseCost:""
-
  };
-
 }
 
-/* Normalize */
+/* NORMALIZE CATALOG */
 
 function normalize(arr){
 
@@ -510,221 +553,178 @@ function normalize(arr){
   return [];
  }
 
- return arr
- .filter(function(x){
-
-  return x &&
-   typeof x === "object";
-
- })
- .map(function(x){
+ return arr.filter(function(x){
+  return x&&typeof x==="object";
+ }).map(function(x){
 
   return {
+   id:String(x.id||fresh().id),
 
-   id:String(
-    x.id || fresh().id
-   ),
-
-   name:String(
-    x.name || ""
-   ),
+   name:String(x.name||""),
 
    baseQty:String(
-    x.baseQty != null
-     ? x.baseQty
-     : x.qty != null
-     ? x.qty
-     : ""
+    x.baseQty!=null?x.baseQty:
+    x.qty!=null?x.qty:""
    ),
 
    baseCost:String(
-    x.baseCost != null
-     ? x.baseCost
-     : x.cost != null
-     ? x.cost
-     : ""
+    x.baseCost!=null?x.baseCost:
+    x.cost!=null?x.cost:""
    )
-
   };
 
  });
-
 }
 
-/* Number */
+/* NUMBER HELPERS */
 
 function num(v){
-
- var n = Number(v);
-
- return isFinite(n)
-  ? Math.max(0,n)
-  : 0;
-
+ var n=Number(v);
+ return isFinite(n)?Math.max(0,n):0;
 }
 
-/* Format */
-
 function fmt(v){
-
  return Number(v).toLocaleString(
   "en-US",
-  {
-   maximumFractionDigits:2
-  }
+  {maximumFractionDigits:2}
  );
-
 }
 
 function money(v){
-
- return fmt(v) + " ကျပ်";
-
+ return fmt(v)+" ကျပ်";
 }
 
 function packet(v){
-
- return fmt(v) + " ထုပ်";
-
+ return fmt(v)+" ထုပ်";
 }
 
-/* Status */
+/* STATUS */
 
 function message(text,error){
 
- $("saveStatus").textContent = text;
+ $("saveStatus").textContent=text;
 
- $("saveStatus").className =
-  "status " +
-  (error ? "error" : "success");
-
+ $("saveStatus").className=
+  "status"+(error?" error":"");
 }
 
-/* Mark Changed */
+/* CONNECTION DISPLAY */
+
+function showConnection(isOnline){
+
+ connected=isOnline;
+
+ var dot=$("connectionDot");
+ var label=$("connectionText");
+
+ if(isOnline){
+
+  dot.className="connection-dot online";
+
+  label.className="online";
+
+  label.textContent="Connected";
+
+ }else{
+
+  dot.className="connection-dot offline";
+
+  label.className="offline";
+
+  label.textContent="Disconnected";
+
+ }
+}
+
+/* DATA CHANGED */
 
 function changed(){
 
- dirty = true;
+ dirty=true;
 
  message(
-  "စာရင်းပြင်ဆင်ထားပါသည်။ Save နှိပ်ပါ။"
+  "ပြင်ဆင်ထားပါသည်။ Save နှိပ်ပါ။"
  );
-
 }
 
-/* Input Field */
+/* INPUT FIELD */
 
-function inputRow(
- item,
- key,
- labelText,
- type
-){
+function inputRow(item,key,labelText,type){
 
- var box = document.createElement("div");
+ var box=document.createElement("div");
+ var label=document.createElement("label");
+ var input=document.createElement("input");
 
- var label = document.createElement("label");
+ label.textContent=labelText;
 
- var input = document.createElement("input");
+ input.type=type;
+ input.value=item[key];
 
- label.textContent = labelText;
+ if(type==="number"){
 
- input.type = type;
+  input.min="0";
 
- input.value = item[key];
-
- if(type === "number"){
-
-  input.min = "0";
-
-  input.step =
-   key === "baseQty"
-   ? "1"
-   : "any";
-
+  input.step=
+   key==="baseQty"?"1":"any";
  }
 
- input.oninput = function(){
+ input.oninput=function(){
 
-  item[key] = input.value;
+  item[key]=this.value;
 
   changed();
-
   calculate();
-
  };
 
  box.appendChild(label);
-
  box.appendChild(input);
 
  return box;
-
 }
 
-/* Render Items */
+/* RENDER ITEMS */
 
 function render(){
 
- var area = $("items");
+ var area=$("items");
 
- area.innerHTML = "";
+ area.innerHTML="";
 
  items.forEach(function(item,index){
 
-  var card =
-   document.createElement("div");
+  var card=document.createElement("div");
+  card.className="card";
 
-  card.className = "card";
+  var top=document.createElement("div");
+  top.className="top";
 
-  var top =
-   document.createElement("div");
+  var title=document.createElement("h3");
+  title.textContent="စဉ် "+(index+1);
 
-  top.className = "top";
+  var del=document.createElement("button");
 
-  var title =
-   document.createElement("h3");
+  del.className="delete";
+  del.textContent="ဖျက်ရန်";
 
-  title.textContent =
-   "စဉ် " + (index+1);
-
-  var del =
-   document.createElement("button");
-
-  del.className = "delete";
-
-  del.textContent = "ဖျက်ရန်";
-
-  del.onclick = function(){
+  del.onclick=function(){
 
    if(!confirm(
     "ဒီမုန့်အမျိုးအစားကို ဖျက်မှာ သေချာပါသလား။"
-   )){
-    return;
-   }
+   ))return;
 
-   items = items.filter(
-    function(x){
-
-     return x.id !== item.id;
-
-    }
-   );
+   items=items.filter(function(x){
+    return x.id!==item.id;
+   });
 
    changed();
-
    render();
-
   };
 
   top.appendChild(title);
-
   top.appendChild(del);
 
-  var grid =
-   document.createElement("div");
-
-  grid.className = "grid";
+  var grid=document.createElement("div");
+  grid.className="grid";
 
   grid.appendChild(
    inputRow(
@@ -758,336 +758,284 @@ function render(){
   card.appendChild(grid);
 
   area.appendChild(card);
-
  });
 
  calculate();
-
 }
 
-/* Summary */
+/* SUMMARY CALCULATION */
 
 function calculate(){
 
- var totalQty = 0;
-
- var totalValue = 0;
-
- var totalTypes = 0;
+ var totalQty=0;
+ var totalValue=0;
+ var totalTypes=0;
 
  items.forEach(function(item){
 
-  if(
-   String(item.name).trim() !== ""
-  ){
+  if(String(item.name).trim()!==""){
    totalTypes++;
   }
 
-  var qty = num(item.baseQty);
+  var qty=num(item.baseQty);
+  var cost=num(item.baseCost);
 
-  var cost = num(item.baseCost);
-
-  totalQty += qty;
-
-  totalValue += qty * cost;
-
+  totalQty+=qty;
+  totalValue+=qty*cost;
  });
 
- $("totalTypes").textContent =
-  totalTypes + " မျိုး";
+ $("totalTypes").textContent=
+  totalTypes+" မျိုး";
 
- $("totalQty").textContent =
+ $("totalQty").textContent=
   packet(totalQty);
 
- $("totalValue").textContent =
+ $("totalValue").textContent=
   money(totalValue);
-
 }
 
-/* Add Item */
+/* ADD PRODUCT */
 
-$("addBtn").onclick = function(){
+$("addBtn").onclick=function(){
 
- if(!ready || saving){
-  return;
- }
+ if(!ready||saving)return;
 
  items.push(fresh());
 
  changed();
-
  render();
-
 };
 
-/* Login */
+/* LOGIN */
 
-$("loginForm").onsubmit = function(e){
+$("loginForm").onsubmit=function(e){
 
  e.preventDefault();
 
- var button =
-  this.querySelector("button");
+ var button=this.querySelector("button");
+ button.disabled=true;
 
- button.disabled = true;
-
- $("loginStatus").textContent =
+ $("loginStatus").textContent=
   "Login ဝင်နေပါသည်...";
 
  auth.signInWithEmailAndPassword(
-
   $("email").value.trim(),
-
   $("password").value
-
  ).then(function(){
 
-  $("password").value = "";
-
-  $("loginStatus").textContent = "";
+  $("password").value="";
+  $("loginStatus").textContent="";
 
  }).catch(function(error){
 
-  $("loginStatus").textContent =
-   error.code || error.message;
+  $("loginStatus").textContent=
+   error.code||error.message;
 
  }).then(function(){
-
-  button.disabled = false;
-
+  button.disabled=false;
  });
-
 };
 
-/* Show Cloud Data */
+/* LOAD DATA */
 
 function showCloud(data){
 
- revision = Number(
-  data && data.revision
- ) || 0;
+ revision=Number(
+  data&&data.revision
+ )||0;
 
- items = normalize(
-  data && data.items
+ items=normalize(
+  data&&data.items
  );
 
  if(!items.length){
-
-  items = [fresh()];
-
+  items=[fresh()];
  }
 
- ready = true;
-
- dirty = false;
-
- conflict = false;
+ ready=true;
+ dirty=false;
+ conflict=false;
 
  render();
-
 }
 
-/* Authentication */
+/* FIREBASE AUTH STATE */
 
-auth.onAuthStateChanged(
- function(user){
+auth.onAuthStateChanged(function(user){
 
-  if(unsubscribe){
+ session++;
+ var currentSession=session;
 
-   unsubscribe();
+ if(unsubscribe){
+  unsubscribe();
+  unsubscribe=null;
+ }
 
-   unsubscribe = null;
+ if(connectionCallback){
 
-  }
-
-  if(connectionCallback){
-
-   db.ref(".info/connected")
-    .off(
-     "value",
-     connectionCallback
-    );
-
-   connectionCallback = null;
-
-  }
-
-  ready = false;
-
-  dirty = false;
-
-  conflict = false;
-
-  connected = false;
-
-  revision = 0;
-
-  $("loading").hidden = true;
-
-  if(!user){
-
-   $("loginBox").hidden = false;
-
-   $("appBox").hidden = true;
-
-   return;
-
-  }
-
-  $("loginBox").hidden = true;
-
-  $("appBox").hidden = false;
-
-  $("account").textContent =
-   user.email;
-
-  message(
-   "Online မူရင်းစာရင်း ဖတ်နေပါသည်..."
-  );
-
-  connectionCallback =
-   function(snapshot){
-
-    connected =
-     snapshot.val() === true;
-
-    $("connection").textContent =
-     connected
-     ? "● Firebase Online ချိတ်ဆက်ထားသည်"
-     : "● Firebase ချိတ်ဆက်မှု မရှိပါ";
-
-   };
-
-  db.ref(".info/connected").on(
+  db.ref(".info/connected").off(
    "value",
    connectionCallback
   );
 
-  var callback = function(snapshot){
-
-   var data = snapshot.val();
-
-   var remote = Number(
-    data && data.revision
-   ) || 0;
-
-   if(!ready){
-
-    showCloud(data);
-
-    message(
-     "မူရင်းစာရင်း ရရှိပြီးပါပြီ။"
-    );
-
-    return;
-
-   }
-
-   if(saving){
-    return;
-   }
-
-   if(dirty){
-
-    if(remote !== revision){
-
-     conflict = true;
-
-     message(
-      "အခြားဖုန်းမှ စာရင်းပြောင်းထားပါသည်။ " +
-      "Refresh လုပ်ပြီး ပြန်စစ်ပါ။",
-      true
-     );
-
-    }
-
-    return;
-
-   }
-
-   showCloud(data);
-
-  };
-
-  catalogRef.on(
-   "value",
-   callback,
-   function(error){
-
-    message(
-     "Database Error: " +
-     (error.code || error.message),
-     true
-    );
-
-   }
-  );
-
-  unsubscribe = function(){
-
-   catalogRef.off(
-    "value",
-    callback
-   );
-
-  };
-
+  connectionCallback=null;
  }
-);
 
-/* Online Save */
+ ready=false;
+ dirty=false;
+ saving=false;
+ conflict=false;
+ revision=0;
 
-$("saveBtn").onclick = async function(){
+ showConnection(false);
 
- if(saving){
+ $("loading").hidden=true;
+
+ if(!user){
+
+  $("loginBox").hidden=false;
+  $("appBox").hidden=true;
+
   return;
  }
 
- if(!ready || !connected){
+ $("loginBox").hidden=true;
+ $("appBox").hidden=false;
+
+ $("account").textContent=user.email||"";
+
+ message(
+  "Online မူရင်းစာရင်း ဖတ်နေပါသည်..."
+ );
+
+ /* FIREBASE CONNECTION */
+
+ connectionCallback=function(snapshot){
+
+  if(session!==currentSession)return;
+
+  showConnection(
+   snapshot.val()===true
+  );
+ };
+
+ db.ref(".info/connected").on(
+  "value",
+  connectionCallback
+ );
+
+ /* CATALOG LISTENER */
+
+ var callback=function(snapshot){
+
+  if(session!==currentSession)return;
+
+  var data=snapshot.val();
+
+  var remote=Number(
+   data&&data.revision
+  )||0;
+
+  if(!ready){
+
+   showCloud(data);
+
+   message(
+    "မူရင်းစာရင်း ရရှိပြီးပါပြီ။"
+   );
+
+   return;
+  }
+
+  if(saving)return;
+
+  if(dirty){
+
+   if(remote!==revision){
+
+    conflict=true;
+
+    message(
+     "အခြားဖုန်းက စာရင်းပြောင်းထားပါသည်။ "+
+     "မသိမ်းရသေးသော အချက်အလက်များကို "+
+     "သိမ်းထားပြီး Refresh ပြန်လုပ်ပါ။",
+     true
+    );
+   }
+
+   return;
+  }
+
+  showCloud(data);
+ };
+
+ catalogRef.on(
+  "value",
+  callback,
+  function(error){
+
+   if(session!==currentSession)return;
+
+   message(
+    "Database Error: "+
+    (error.code||error.message),
+    true
+   );
+  }
+ );
+
+ unsubscribe=function(){
+
+  catalogRef.off(
+   "value",
+   callback
+  );
+ };
+
+});
+
+/* ONLINE SAVE */
+
+$("saveBtn").onclick=async function(){
+
+ if(saving)return;
+
+ if(!ready||!connected){
 
   message(
-   "Firebase ချိတ်ဆက်မှုကို စစ်ဆေးပါ။",
+   "Firebase ချိတ်ဆက်မှု စစ်ဆေးပါ။",
    true
   );
 
   return;
-
  }
 
  if(conflict){
 
   message(
-   "အခြားဖုန်းမှာ စာရင်းပြောင်းထားပါသည်။ " +
-   "Refresh လုပ်ပြီး ပြန်စစ်ပါ။",
+   "အခြားဖုန်းက စာရင်းပြောင်းထားပါသည်။ "+
+   "Refresh ပြန်လုပ်ပါ။",
    true
   );
 
   return;
-
  }
 
- var clean = items.filter(
-  function(x){
+ /* REMOVE EMPTY PRODUCTS */
 
-   return x.name.trim() !== "";
+ var clean=items.filter(function(x){
+  return x.name.trim()!=="";
+ });
 
-  }
- );
+ /* VALIDATION */
 
- /* Validate */
+ var names={};
 
- var names = {};
+ for(var i=0;i<clean.length;i++){
 
- for(
-  var i=0;
-  i<clean.length;
-  i++
- ){
+  var x=clean[i];
 
-  var x = clean[i];
-
-  var key =
-   x.name.trim().toLowerCase();
+  var key=x.name.trim().toLowerCase();
 
   if(names[key]){
 
@@ -1095,93 +1043,79 @@ $("saveBtn").onclick = async function(){
     "မုန့်အမည် ထပ်နေပါသည်။",
     true
    );
-
    return;
-
   }
 
-  names[key] = true;
+  names[key]=true;
 
-  var qty = Number(x.baseQty);
-
-  var cost = Number(x.baseCost);
+  var qty=Number(x.baseQty);
+  var cost=Number(x.baseCost);
 
   if(
-   !isFinite(qty) ||
-   qty < 0 ||
-   !Number.isInteger(qty) ||
-   !isFinite(cost) ||
-   cost < 0
+   !isFinite(qty)||
+   qty<0||
+   !Number.isInteger(qty)||
+   !isFinite(cost)||
+   cost<0
   ){
 
    message(
     "မူရင်းအထုပ်နှင့် မူရင်းဈေးကို စစ်ဆေးပါ။",
     true
    );
-
    return;
-
   }
-
  }
 
- saving = true;
+ saving=true;
 
- $("saveBtn").disabled = true;
+ $("saveBtn").disabled=true;
 
  message(
   "Firebase Online Database ထဲ သိမ်းနေပါသည်..."
  );
 
- var expected = revision;
+ var expectedRevision=revision;
+ var currentSession=session;
 
- var payload = JSON.parse(
+ var payload=JSON.parse(
   JSON.stringify(clean)
  );
 
  try{
 
-  var result =
-   await catalogRef.transaction(
+  var result=await catalogRef.transaction(
+   function(current){
 
-    function(current){
+    var currentRev=Number(
+     current&&current.revision
+    )||0;
 
-     var currentRev =
-      Number(
-       current && current.revision
-      ) || 0;
+    if(currentRev!==expectedRevision){
+     return;
+    }
 
-     if(
-      currentRev !== expected
-     ){
-      return;
-     }
+    return {
+     revision:currentRev+1,
+     items:payload,
+     updatedAt:
+      firebase.database.ServerValue.TIMESTAMP
+    };
 
-     return {
+   },
+   undefined,
+   false
+  );
 
-      revision:
-       currentRev + 1,
-
-      items:payload,
-
-      updatedAt:Date.now()
-
-     };
-
-    },
-
-    undefined,
-
-    false
-
-   );
+  if(currentSession!==session)return;
 
   if(!result.committed){
 
-   conflict = true;
+   conflict=true;
 
    message(
-    "အခြားဖုန်းမှာ စာရင်းပြောင်းထားသဖြင့် Save မလုပ်ခဲ့ပါ။",
+    "အခြားဖုန်းက စာရင်းပြောင်းထားသဖြင့် "+
+    "Save မလုပ်ခဲ့ပါ။",
     true
    );
 
@@ -1192,32 +1126,35 @@ $("saveBtn").onclick = async function(){
    );
 
    message(
-    "✓ Save ပြီးပါပြီ။ " +
-    "အရောင်း ၁ နှင့် အရောင်း ၂ တွင် " +
-    "မုန့်စာရင်း အလိုအလျောက်ပေါ်ပါမည်။"
+    "✓ Save ပြီးပါပြီ။ "+
+    "အရောင်း ၁ နှင့် အရောင်း ၂ တွင် "+
+    "မုန့်စာရင်း အလိုအလျောက် "+
+    "ပြောင်းလဲပေါ်လာပါမည်။"
    );
-
   }
 
  }catch(error){
 
-  message(
-   "Save Error: " +
-   (error.code || error.message),
-   true
-  );
+  if(currentSession===session){
+
+   message(
+    "Save Error: "+
+    (error.code||error.message),
+    true
+   );
+  }
 
  }finally{
 
-  saving = false;
+  if(currentSession===session){
 
-  $("saveBtn").disabled = false;
-
+   saving=false;
+   $("saveBtn").disabled=false;
+  }
  }
-
 };
 
-/* Unsaved Warning */
+/* UNSAVED DATA WARNING */
 
 window.addEventListener(
  "beforeunload",
@@ -1226,11 +1163,8 @@ window.addEventListener(
   if(dirty){
 
    e.preventDefault();
-
-   e.returnValue = "";
-
+   e.returnValue="";
   }
-
  }
 );
 
