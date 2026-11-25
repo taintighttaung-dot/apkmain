@@ -1,0 +1,509 @@
+
+<!DOCTYPE html>
+<html lang="my">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>အရောင်းဘောင်ချာများ</title>
+<style>
+*{box-sizing:border-box}
+[hidden]{display:none!important}
+body{
+ margin:0;padding:15px;
+ background:#f3f6f4;color:#263b32;
+ font-family:Arial,sans-serif;
+}
+main{max-width:650px;margin:auto}
+header{
+ background:#176b51;color:white;
+ padding:22px;border-radius:18px;
+ text-align:center;margin-bottom:18px;
+}
+header h2{margin:0 0 8px}
+.card{
+ background:white;border-radius:18px;
+ padding:18px;margin-bottom:18px;
+ box-shadow:0 4px 15px #0000000d;
+}
+.flex{
+ display:flex;align-items:center;
+ justify-content:space-between;gap:10px;
+}
+label{
+ display:block;margin:12px 0 6px;
+ font-size:14px;color:#52645a;
+}
+input{
+ width:100%;padding:13px;
+ border:1px solid #d3ddd7;
+ border-radius:11px;font-size:16px;
+}
+button,.back{
+ display:block;padding:13px;
+ border:0;border-radius:11px;
+ font-size:15px;font-weight:bold;
+ background:#176b51;color:white;
+ text-decoration:none;text-align:center;
+ cursor:pointer;
+}
+button{width:100%}
+.back{background:#e8f5ee;color:#176b51}
+.status{font-size:14px;color:#176b51;line-height:1.5;overflow-wrap:anywhere}
+.error{color:#bd2929}
+.voucher{
+ background:white;padding:18px;
+ border-radius:17px;
+ margin-bottom:18px;
+ border:1px solid #d9e6de;
+}
+.voucher h3{
+ text-align:center;font-size:19px;
+ margin:0 0 15px;
+}
+.info{
+ background:#e8f5ee;
+ border-radius:11px;padding:12px;
+ margin:10px 0;
+}
+.info small{
+ display:block;color:#52645a;
+ margin-bottom:7px;
+}
+.grid{
+ display:grid;grid-template-columns:1fr 1fr;
+ gap:10px;
+}
+.tablewrap{overflow-x:auto;margin-top:15px}
+table{
+ width:100%;min-width:360px;
+ border-collapse:collapse;
+ font-size:12px;
+}
+th,td{
+ border:1px solid #d1e0d7;
+ padding:9px 5px;
+ overflow-wrap:anywhere;
+}
+th,tfoot{background:#e8f5ee}
+td:nth-child(n+3){text-align:right}
+.total{
+ display:flex;justify-content:space-between;
+ gap:12px;padding-top:15px;margin-top:15px;
+ border-top:1px solid #d1e0d7;
+ font-weight:bold;
+}
+.number{
+ color:#176b51;
+ font-size:12px;
+ text-align:right;
+ margin:0 0 8px;
+}
+@media(max-width:350px){
+ .grid{grid-template-columns:1fr}
+}
+</style>
+</head>
+
+<body>
+<main>
+
+<header>
+<h2 id="pageTitle">အရောင်းဘောင်ချာများ</h2>
+<p>သိမ်းဆည်းပြီးသော ဘောင်ချာမှတ်တမ်း</p>
+</header>
+
+<a class="back" href="index.html">
+ ပင်မသို့ ပြန်သွားရန်
+</a>
+
+<div id="loading" class="card"
+ style="margin-top:18px">
+ Firebase ချိတ်ဆက်နေပါသည်...
+</div>
+
+<!-- MAIN LOGIN -->
+
+<div id="loginBox" class="card"
+ style="margin-top:18px" hidden>
+
+<h3>ပင်မ Account ဖြင့် ဝင်ရန်</h3>
+
+<form id="loginForm">
+<label>Email</label>
+<input id="email" type="email" required>
+
+<label>Password</label>
+<input id="password" type="password" required>
+
+<button style="margin-top:14px">
+ Login ဝင်မည်
+</button>
+</form>
+
+<p id="loginStatus" class="status"></p>
+</div>
+
+<div id="appBox" hidden>
+
+<div class="card" style="margin-top:18px">
+
+<div class="flex">
+<strong id="accountTitle"></strong>
+<small id="count"></small>
+</div>
+
+<p id="account" class="status"></p>
+
+<label>ဆိုင်အမည်ဖြင့် ရှာရန်</label>
+<input id="search"
+ type="search"
+ placeholder="ဆိုင်အမည် ရိုက်ရှာပါ">
+
+</div>
+
+<div id="receipts"></div>
+
+<p id="empty" class="card"
+ hidden>
+ ဘောင်ချာမှတ်တမ်း မရှိသေးပါ။
+</p>
+
+<p id="message" class="status"></p>
+
+</div>
+</main>
+
+<script src="https://www.gstatic.com/firebasejs/10.12.5/firebase-app-compat.js"></script>
+<script src="https://www.gstatic.com/firebasejs/10.12.5/firebase-auth-compat.js"></script>
+<script src="https://www.gstatic.com/firebasejs/10.12.5/firebase-database-compat.js"></script>
+
+<script>
+(function(){
+"use strict";
+
+const $=id=>document.getElementById(id);
+
+const seller=
+ new URLSearchParams(location.search)
+ .get("seller")==="secondseller"
+ ? "secondseller":"firstseller";
+
+const sellerTitle=
+ seller==="secondseller"
+ ? "အရောင်း ၂":"အရောင်း ၁";
+
+$("pageTitle").textContent=
+ sellerTitle+" ဘောင်ချာများ";
+
+$("accountTitle").textContent=sellerTitle;
+
+if(!window.firebase){
+ $("loading").textContent=
+ "Firebase SDK မဖွင့်နိုင်ပါ";
+ return;
+}
+
+/* Firebase Configuration */
+
+const config={
+ apiKey:"AIzaSyAZK7ntdtiSDZ9eC6eAr3xKDK_DGJnNVVU",
+ authDomain:"seller-b4dfa.firebaseapp.com",
+ databaseURL:"https://seller-b4dfa-default-rtdb.firebaseio.com",
+ projectId:"seller-b4dfa",
+ storageBucket:"seller-b4dfa.firebasestorage.app",
+ messagingSenderId:"632319829206",
+ appId:"1:632319829206:web:ae8ea88684ccb061311577"
+};
+
+/* Main Account */
+
+const app=
+ firebase.apps.find(x=>x.name==="mainSellerApp")
+ ||firebase.initializeApp(
+  config,"mainSellerApp"
+ );
+
+const auth=app.auth();
+const db=app.database();
+
+let receipts=[];
+let offReceipts=null;
+
+function fmt(n){
+ return Number(n||0).toLocaleString(
+  "en-US",{maximumFractionDigits:2}
+ );
+}
+
+function money(n){
+ return fmt(n)+" ကျပ်";
+}
+
+function dateText(timestamp){
+
+ if(!timestamp)return "မရှိသေးပါ";
+
+ const d=new Date(Number(timestamp));
+
+ return d.toLocaleDateString("en-GB",{
+  timeZone:"Asia/Yangon"
+ });
+}
+
+function timeText(timestamp){
+
+ if(!timestamp)return "မရှိသေးပါ";
+
+ const d=new Date(Number(timestamp));
+
+ return d.toLocaleTimeString("en-US",{
+  timeZone:"Asia/Yangon",
+  hour12:true
+ });
+}
+
+function el(tag,text,className){
+
+ const node=document.createElement(tag);
+
+ if(text!==undefined){
+  node.textContent=text;
+ }
+
+ if(className){
+  node.className=className;
+ }
+
+ return node;
+}
+
+/* Receipt Rendering */
+
+function render(){
+
+ const query=$("search").value
+  .trim().toLowerCase();
+
+ const visible=receipts.filter(r=>
+  String(r.shopName||"")
+  .toLowerCase().includes(query)
+ );
+
+ $("receipts").replaceChildren();
+
+ $("count").textContent=
+  visible.length+" စောင်";
+
+ $("empty").hidden=visible.length>0;
+
+ visible.forEach((receipt,index)=>{
+
+  const box=el("section",undefined,"voucher");
+
+  const order=el(
+   "p",
+   "ဘောင်ချာ "+(index+1),
+   "number"
+  );
+
+  const title=el("h3","အရောင်းဘောင်ချာ");
+
+  const shop=el("div",undefined,"info");
+
+  shop.append(
+   el("small","ဆိုင်အမည်"),
+   el("strong",receipt.shopName||"")
+  );
+
+  const info=el("div",undefined,"grid");
+
+  const date=el("div",undefined,"info");
+  date.append(
+   el("small","ရက်စွဲ"),
+   el("strong",dateText(receipt.savedAt))
+  );
+
+  const time=el("div",undefined,"info");
+  time.append(
+   el("small","အချိန်"),
+   el("strong",timeText(receipt.savedAt))
+  );
+
+  info.append(date,time);
+
+  /* Table */
+
+  const wrap=el("div",undefined,"tablewrap");
+  const table=document.createElement("table");
+
+  const thead=document.createElement("thead");
+  const headRow=document.createElement("tr");
+
+  [
+   "စဉ်","မုန့်အမျိုးအစား",
+   "ဦးရေ","နှုန်း","ရောင်းရငွေ"
+  ].forEach(text=>{
+   headRow.append(el("th",text));
+  });
+
+  thead.append(headRow);
+
+  const tbody=document.createElement("tbody");
+
+  const rows=Array.isArray(receipt.items)
+   ?receipt.items:[];
+
+  rows.forEach((item,i)=>{
+
+   const tr=document.createElement("tr");
+
+   [
+    String(i+1),
+    String(item.name||""),
+    fmt(item.qty),
+    money(item.rate),
+    money(item.revenue)
+   ].forEach(text=>{
+    tr.append(el("td",text));
+   });
+
+   tbody.append(tr);
+  });
+
+  const tfoot=document.createElement("tfoot");
+  const foot=document.createElement("tr");
+
+  const totalLabel=el("td","စုစုပေါင်း");
+  totalLabel.colSpan=2;
+
+  foot.append(
+   totalLabel,
+   el("td",fmt(receipt.totalQty)),
+   el("td","—"),
+   el("td",money(receipt.totalRevenue))
+  );
+
+  tfoot.append(foot);
+
+  table.append(thead,tbody,tfoot);
+  wrap.append(table);
+
+  const total=el("div",undefined,"total");
+
+  total.append(
+   el("span","စုစုပေါင်း ရောင်းရငွေ"),
+   el("strong",money(receipt.totalRevenue))
+  );
+
+  box.append(order,title,shop,info,wrap,total);
+
+  $("receipts").append(box);
+ });
+}
+
+/* Search */
+
+$("search").oninput=render;
+
+/* Login */
+
+$("loginForm").onsubmit=async function(e){
+
+ e.preventDefault();
+
+ try{
+
+  await auth.signInWithEmailAndPassword(
+   $("email").value.trim(),
+   $("password").value
+  );
+
+  $("password").value="";
+
+ }catch(error){
+
+  $("loginStatus").textContent=
+   error.message;
+ }
+};
+
+/* Authentication */
+
+auth.onAuthStateChanged(user=>{
+
+ if(offReceipts){
+  offReceipts();
+  offReceipts=null;
+ }
+
+ receipts=[];
+
+ $("loading").hidden=true;
+
+ $("loginBox").hidden=!!user;
+ $("appBox").hidden=!user;
+
+ if(!user)return;
+
+ $("account").textContent=
+  user.email||"";
+
+ if(user.email!=="mainseller@gmail.com"){
+
+  $("message").textContent=
+   "ပင်မ Account ဖြင့်သာ ဘောင်ချာကြည့်နိုင်ပါသည်။";
+
+  $("message").className="status error";
+
+  return;
+ }
+
+ $("message").textContent=
+  "ဘောင်ချာများ ဖတ်နေပါသည်...";
+
+ const ref=db.ref("receipts/"+seller);
+
+ const callback=snapshot=>{
+
+  receipts=[];
+
+  snapshot.forEach(child=>{
+
+   const data=child.val();
+
+   if(data&&typeof data==="object"){
+    receipts.push({
+     id:child.key,
+     ...data
+    });
+   }
+  });
+
+  receipts.sort(
+   (a,b)=>Number(b.savedAt||0)-
+   Number(a.savedAt||0)
+  );
+
+  $("message").textContent=
+   "ဘောင်ချာများ ရရှိပြီးပါပြီ။";
+
+  render();
+ };
+
+ ref.on("value",callback,error=>{
+
+  $("message").textContent=
+   "Firebase Error: "+error.message;
+
+  $("message").className="status error";
+ });
+
+ offReceipts=()=>{
+  ref.off("value",callback);
+ };
+});
+
+})();
+</script>
+</body>
+</html>
