@@ -3,12 +3,18 @@
 <html lang="my">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
-<title>မုန့်အရောင်းနှင့် အမြတ်စာရင်း</title>
+<meta name="viewport"
+ content="width=device-width,initial-scale=1">
+<title>ပင်မ - မုန့်မူရင်းစာရင်း</title>
 
 <style>
-*{box-sizing:border-box}
-[hidden]{display:none!important}
+*{
+ box-sizing:border-box;
+}
+
+[hidden]{
+ display:none!important;
+}
 
 body{
  margin:0;
@@ -17,236 +23,191 @@ body{
  color:#263b32;
  font-family:Arial,sans-serif;
 }
+
 .container{
  max-width:650px;
  margin:auto;
 }
+
 .header{
  background:#176b51;
  color:white;
- padding:24px 16px;
- border-radius:17px;
  text-align:center;
+ padding:24px 16px;
+ border-radius:18px;
  margin-bottom:18px;
 }
-.header h2{margin:0 0 8px}
-.header p{margin:0;font-size:13px}
 
-.card,.panel{
+.header h2{
+ margin:0 0 8px;
+}
+
+.header p{
+ margin:0;
+ font-size:14px;
+}
+
+.card{
  background:white;
- padding:19px;
  border-radius:18px;
+ padding:19px;
  margin-bottom:18px;
  box-shadow:0 4px 15px #0000000d;
 }
-.card-title,.line{
+
+.top{
  display:flex;
  justify-content:space-between;
  align-items:center;
- gap:12px;
+ gap:10px;
 }
-.card-title{
- font-size:19px;
- font-weight:bold;
+
+h3{
+ margin:0 0 12px;
 }
+
 label{
  display:block;
  margin:14px 0 7px;
  color:#52645a;
  font-size:14px;
 }
-input:not([type=file]){
+
+input{
  width:100%;
  min-width:0;
  padding:13px;
  border:1px solid #d2ddd6;
  border-radius:11px;
+ background:white;
  font-size:16px;
  outline:none;
 }
+
 input:focus{
- outline:2px solid #c2e6d2;
+ border-color:#176b51;
+ box-shadow:0 0 0 2px #c2e6d2;
 }
+
 .grid{
  display:grid;
- grid-template-columns:repeat(2,minmax(0,1fr));
- gap:0 12px;
+ grid-template-columns:
+  minmax(0,1fr) minmax(0,1fr);
+ gap:12px;
 }
-.result{
+
+button{
+ cursor:pointer;
+ font-size:15px;
+ font-weight:bold;
+ border-radius:11px;
+ padding:15px;
+}
+
+button:disabled{
+ opacity:.65;
+ cursor:wait;
+}
+
+.primary{
+ width:100%;
+ background:#176b51;
+ color:white;
+ border:0;
+}
+
+.add{
+ width:100%;
+ background:white;
+ color:#176b51;
+ border:2px dashed #176b51;
+}
+
+.delete{
+ background:#fff0f0;
+ color:#c62828;
+ border:0;
+ padding:11px 13px;
+}
+
+.status{
+ margin:12px 0;
+ font-size:14px;
+ line-height:1.6;
+ overflow-wrap:anywhere;
+}
+
+.success{
+ color:#176b51;
+}
+
+.error{
+ color:#c62828;
+}
+
+.small{
+ color:#64766b;
+ font-size:13px;
+ line-height:1.6;
+}
+
+.info{
  background:#e8f5ee;
  padding:15px;
- border-radius:13px;
- margin-top:18px;
+ border-radius:12px;
+ margin-top:15px;
 }
+
 .line{
- padding:11px 0;
+ display:flex;
+ justify-content:space-between;
+ align-items:center;
+ gap:12px;
+ padding:10px 0;
  border-bottom:1px solid #d4e5db;
 }
-.line:last-child{border-bottom:0}
+
+.line:last-child{
+ border-bottom:0;
+}
+
 .line strong{
  text-align:right;
  overflow-wrap:anywhere;
 }
-.profit{color:#176b51}
-.loss,.warning{color:#c62828}
-.warning{font-size:13px}
-button{
- cursor:pointer;
- font-size:15px;
+
+.sticky{
+ position:sticky;
+ bottom:8px;
+ z-index:10;
+ padding:12px;
+ background:#ffffffed;
+ border-radius:15px;
+ box-shadow:0 4px 15px #0002;
+ margin-bottom:18px;
 }
-button:disabled{
- opacity:.7;
- cursor:wait;
-}
-.primary{
- display:block;
- width:100%;
- padding:16px;
- background:#176b51;
- color:white;
- border:0;
- border-radius:11px;
- font-weight:bold;
-}
-.secondary{
- background:#e8f5ee;
- color:#176b51;
- border:1px solid #c0d9cc;
- border-radius:10px;
- padding:12px 8px;
- font-weight:bold;
-}
-.delete{
- border:0;
- background:#fff0f0;
- color:#c62828;
- padding:10px 13px;
- border-radius:10px;
-}
-.add{
- width:100%;
- padding:17px;
- background:white;
- color:#176b51;
- border:2px dashed #176b51;
- border-radius:13px;
- font-weight:bold;
-}
+
 .summary{
  background:#176b51;
  color:white;
- padding:21px;
- border-radius:17px;
- margin-top:22px;
+ padding:20px;
+ border-radius:18px;
  margin-bottom:18px;
 }
-.summary h3{margin:0 0 17px}
+
 .summary .line{
  border-color:#ffffff35;
 }
-.details{
- background:#ffffff15;
- border-radius:12px;
- padding:6px 13px;
- margin:12px 0 20px;
+
+.warning{
+ color:#ae6500;
+ font-size:13px;
 }
-.section-title{
- font-weight:bold;
- margin-top:20px;
-}
-.table-wrap{
- overflow-x:auto;
- margin-top:12px;
-}
-.sales-table{
- width:100%;
- border-collapse:collapse;
- table-layout:fixed;
- background:white;
- color:#263b32;
- font-size:12px;
-}
-.sales-table th,
-.sales-table td{
- border:1px solid #d4e5db;
- padding:9px 4px;
- overflow-wrap:anywhere;
-}
-.sales-table th,
-.sales-table tfoot{
- background:#e8f5ee;
- font-weight:bold;
-}
-.sales-table th:nth-child(1){width:9%}
-.sales-table th:nth-child(2){width:29%}
-.sales-table th:nth-child(3){width:12%}
-.sales-table th:nth-child(4){width:20%}
-.sales-table th:nth-child(5){width:30%}
-.sales-table td:nth-child(n+3),
-.sales-table th:nth-child(n+3){
- text-align:right;
-}
-.sales-table tfoot td:last-child{
- color:#176b51;
-}
-.backup-row{
- display:grid;
- grid-template-columns:1fr 1fr;
- gap:10px;
- margin-top:12px;
-}
-.small{
- color:#52645a;
- font-size:12px;
- line-height:1.7;
- overflow-wrap:anywhere;
-}
-.status{
- font-size:14px;
- line-height:1.6;
- margin:12px 0;
-}
-.error{color:#c62828}
-.success{color:#176b51}
-.conflict{
- background:#fff3d4;
- color:#735000;
- border-radius:12px;
- padding:15px;
- margin-bottom:16px;
-}
-.save-btn{
- display:block;
- width:100%;
- min-height:58px;
- padding:16px;
- background:#176b51;
- color:white;
- border:0;
- border-radius:12px;
- font-size:17px;
- font-weight:bold;
-}
-.reset{
- width:100%;
- padding:15px;
- margin-bottom:18px;
- background:white;
- color:#c62828;
- border:1px solid #e5cccc;
- border-radius:11px;
-}
-@media(max-width:380px){
- .card,.panel{padding:13px}
- .grid{gap:0 8px}
- input:not([type=file]){
-  padding:10px;
-  font-size:15px;
+
+@media(max-width:350px){
+ .grid{
+  grid-template-columns:1fr;
  }
- .summary{padding:15px}
- .sales-table{font-size:11px}
- .sales-table th,
- .sales-table td{padding:8px 3px}
 }
 </style>
 </head>
@@ -254,1182 +215,1027 @@ button:disabled{
 <body>
 <div class="container">
 
+<!-- Header -->
+
 <div class="header">
- <h2>မုန့်အရောင်းနှင့် အမြတ်စာရင်း</h2>
- <p>Online စာရင်းသိမ်းဆည်းခြင်း</p>
+ <h2>ပင်မ</h2>
+ <p>မုန့်အမျိုးအစားနှင့် မူရင်းစာရင်း</p>
 </div>
 
-<p id="loading" class="status">
- ချိတ်ဆက်နေပါသည်...
-</p>
+<!-- Loading -->
+
+<div id="loading" class="card">
+ Firebase ချိတ်ဆက်နေပါသည်...
+</div>
 
 <!-- Login -->
 
-<div id="loginArea" class="panel" hidden>
- <h3>အကောင့်ဝင်ရန်</h3>
- <p class="small">
-  Firebase Email နှင့် Password ကိုထည့်ပါ။
- </p>
+<div id="loginBox" class="card" hidden>
+
+ <h3>ပင်မ Account ဝင်ရန်</h3>
 
  <form id="loginForm">
-  <label>Email</label>
-  <input id="email" type="email"
-   autocomplete="username" required>
 
-  <label>Password</label>
-  <input id="password" type="password"
-   autocomplete="current-password" required>
+  <label for="email">Email</label>
 
-  <button class="primary"
+  <input
+   id="email"
+   type="email"
+   autocomplete="username"
+   required>
+
+  <label for="password">Password</label>
+
+  <input
+   id="password"
+   type="password"
+   autocomplete="current-password"
+   required>
+
+  <button
    type="submit"
-   style="margin-top:18px">
+   class="primary"
+   style="margin-top:16px">
    Login ဝင်မည်
   </button>
+
  </form>
 
- <p id="loginStatus" class="status"></p>
+ <p id="loginStatus"
+  class="status"></p>
+
 </div>
 
-<!-- Main Application -->
+<!-- Main -->
 
-<div id="appArea" hidden>
+<div id="appBox" hidden>
 
-<div class="panel">
- <strong>Online စာရင်း</strong>
- <div id="accountEmail" class="small"></div>
- <p id="connectionStatus" class="small">
-  ချိတ်ဆက်နေပါသည်...
+<div class="card">
+
+ <h3>ပင်မ မုန့်စာရင်း</h3>
+
+ <div id="account" class="small"></div>
+
+ <p id="connection" class="status"></p>
+
+ <p class="small">
+  မုန့်အမျိုးအစား အရေအတွက်
+  ကန့်သတ်မထားပါ။
+  ရှိသလောက် ထည့်နိုင်ပါသည်။
  </p>
+
 </div>
 
-<div id="conflictBox" class="conflict" hidden>
- <strong>အခြားဖုန်းတွင် စာရင်းပြောင်းထားပါသည်။</strong>
- <p>
-  မသိမ်းရသေးသော စာရင်းများ
-  မပျောက်စေရန် အလိုအလျောက်
-  အစားမထိုးထားပါ။
- </p>
- <button id="reloadCloud" class="secondary">
-  Online စာရင်းပြန်ယူရန်
- </button>
-</div>
+<!-- Items -->
 
 <div id="items"></div>
 
-<button id="addBtn" class="add">
- + မုန့်အမျိုးအစား ထပ်ထည့်ရန်
-</button>
+<!-- Add Button -->
+
+<div class="card">
+
+ <button
+  id="addBtn"
+  class="add">
+  + မုန့်အမျိုးအစား ထပ်ထည့်ရန်
+ </button>
+
+</div>
 
 <!-- Summary -->
 
 <div class="summary">
 
-<h3>စုစုပေါင်း စာရင်းချုပ်</h3>
+ <h3>မူရင်းစာရင်းချုပ်</h3>
 
-<div class="line">
- <span>မုန့်အမျိုးအစား</span>
- <strong id="types">0 မျိုး</strong>
-</div>
+ <div class="line">
+  <span>မုန့်အမျိုးအစားစုစုပေါင်း</span>
+  <strong id="totalTypes">0 မျိုး</strong>
+ </div>
 
-<div class="line">
- <span>မူရင်းအထုပ်စုစုပေါင်း</span>
- <strong id="totalQty">0 ထုပ်</strong>
-</div>
-<div id="qtyDetails" class="details"></div>
+ <div class="line">
+  <span>မူရင်းအထုပ်စုစုပေါင်း</span>
+  <strong id="totalQty">0 ထုပ်</strong>
+ </div>
 
-<div class="line">
- <span>ရောင်းပြီးအထုပ်စုစုပေါင်း</span>
- <strong id="totalSold">0 ထုပ်</strong>
-</div>
-<div id="soldDetails" class="details"></div>
-
-<div class="line">
- <span>လက်ကျန်အထုပ်စုစုပေါင်း</span>
- <strong id="totalRemain">0 ထုပ်</strong>
-</div>
-<div id="remainDetails" class="details"></div>
-
-<div class="line">
- <span>မူရင်းတန်ဖိုးစုစုပေါင်း</span>
- <strong id="totalCost">0 ကျပ်</strong>
-</div>
-
-<div class="line">
- <span>ရောင်းရငွေစုစုပေါင်း</span>
- <strong id="totalRevenue">0 ကျပ်</strong>
-</div>
-<div id="revenueDetails" class="details"></div>
-
-<div class="section-title">
- မုန့်အမျိုးအစားအလိုက် ရောင်းရငွေ အနှစ်ချုပ်
-</div>
-
-<div class="table-wrap">
-<table class="sales-table">
-
-<thead>
-<tr>
- <th>စဉ်</th>
- <th>မုန့်အမျိုးအစား</th>
- <th>ဦးရေ<br>(ထုပ်)</th>
- <th>နှုန်း<br>(ကျပ်)</th>
- <th>ရောင်းရငွေ<br>(ကျပ်)</th>
-</tr>
-</thead>
-
-<tbody id="salesTableBody"></tbody>
-
-<tfoot>
-<tr>
- <td colspan="2">စုစုပေါင်း</td>
- <td id="summarySold">0</td>
- <td>—</td>
- <td id="summaryRevenue">0 ကျပ်</td>
-</tr>
-</tfoot>
-
-</table>
-</div>
+ <div class="line">
+  <span>မူရင်းတန်ဖိုးစုစုပေါင်း</span>
+  <strong id="totalValue">0 ကျပ်</strong>
+ </div>
 
 </div>
 
-<!-- Online Save -->
+<!-- Save -->
 
-<div class="panel">
+<div class="sticky">
 
-<button id="saveBtn" class="save-btn">
- 💾 Save မည် (Online သိမ်းဆည်းရန်)
-</button>
-
-<p id="saveStatus" class="status"
- role="status" aria-live="polite"></p>
-
-<div class="backup-row">
- <button id="backupBtn" class="secondary">
-  Backup ဖိုင်ယူရန်
+ <button
+  id="saveBtn"
+  class="primary">
+  💾 Save မည်
  </button>
 
- <button id="restoreBtn" class="secondary">
-  Backup ပြန်ထည့်ရန်
- </button>
-</div>
-
-<input id="backupFile" type="file"
- accept=".json,application/json" hidden>
-
-<button id="importOldBtn"
- class="secondary"
- style="margin-top:12px;width:100%"
- hidden>
- ယခင် Browser စာရင်းယူရန်
-</button>
-
-<p class="small">
- Save နှိပ်ပါ။ Data များကို သိမ်းထားပါမည်။
-</p>
+ <p
+  id="saveStatus"
+  class="status"
+  role="status">
+ </p>
 
 </div>
-
-<!-- Delete All -->
-
-<button id="resetBtn" class="reset">
- စာရင်းအားလုံး ရှင်းလင်းရန်
-</button>
 
 </div>
 </div>
 
-<script type="module">
+<!-- Firebase Error Detection -->
 
-/* Firebase SDK */
+<script>
+window.addEventListener(
+ "error",
+ function(e){
 
-import {initializeApp}
-from "https://www.gstatic.com/firebasejs/10.12.5/firebase-app.js";
+  var loading =
+   document.getElementById("loading");
 
-import {
- getAuth,
- setPersistence,
- browserLocalPersistence,
- signInWithEmailAndPassword,
- onAuthStateChanged
-}
-from "https://www.gstatic.com/firebasejs/10.12.5/firebase-auth.js";
+  if(loading && !loading.hidden){
 
-import {
- getDatabase,
- ref,
- onValue,
- get,
- runTransaction
-}
-from "https://www.gstatic.com/firebasejs/10.12.5/firebase-database.js";
+   loading.textContent =
+    "JavaScript Error: " +
+    (e.message || "Unknown error");
 
-/* Firebase Config */
+   loading.className = "card error";
+  }
+ }
+);
+</script>
 
-const firebaseConfig={
- apiKey:"AIzaSyAZK7ntdtiSDZ9eC6eAr3xKDK_DGJnNVVU",
- authDomain:"seller-b4dfa.firebaseapp.com",
- databaseURL:"https://seller-b4dfa-default-rtdb.firebaseio.com",
- projectId:"seller-b4dfa",
- storageBucket:"seller-b4dfa.firebasestorage.app",
- messagingSenderId:"632319829206",
- appId:"1:632319829206:web:ae8ea88684ccb061311577",
- measurementId:"G-56VDJH0YVJ"
+<!-- Firebase SDK -->
+
+<script
+ src="https://www.gstatic.com/firebasejs/10.12.5/firebase-app-compat.js">
+</script>
+
+<script
+ src="https://www.gstatic.com/firebasejs/10.12.5/firebase-auth-compat.js">
+</script>
+
+<script
+ src="https://www.gstatic.com/firebasejs/10.12.5/firebase-database-compat.js">
+</script>
+
+<script>
+(function(){
+"use strict";
+
+/* Elements */
+
+var $ = function(id){
+ return document.getElementById(id);
 };
 
-const app=initializeApp(firebaseConfig);
-const auth=getAuth(app);
-const db=getDatabase(app);
+/* SDK Check */
 
-setPersistence(
- auth,browserLocalPersistence
-).catch(console.warn);
+if(
+ !window.firebase ||
+ !firebase.auth ||
+ !firebase.database
+){
 
-const el=id=>document.getElementById(id);
+ $("loading").textContent =
+  "Firebase SDK မဖွင့်နိုင်ပါ။ Internet စစ်ပါ။";
 
-const OLD_KEY="snack_profit_v2";
-const DRAFT_KEY="snack_sales_online_draft";
+ $("loading").className =
+  "card error";
 
-let items=[];
-let userRef=null;
-let unsubscribe=null;
-let unsubscribeConnection=null;
+ return;
+}
 
-let revision=0;
-let ready=false;
-let dirty=false;
-let saving=false;
-let connected=false;
-let conflict=false;
+/* Firebase Configuration */
+
+var firebaseConfig = {
+
+ apiKey:
+  "AIzaSyAZK7ntdtiSDZ9eC6eAr3xKDK_DGJnNVVU",
+
+ authDomain:
+  "seller-b4dfa.firebaseapp.com",
+
+ databaseURL:
+  "https://seller-b4dfa-default-rtdb.firebaseio.com",
+
+ projectId:
+  "seller-b4dfa",
+
+ storageBucket:
+  "seller-b4dfa.firebasestorage.app",
+
+ messagingSenderId:
+  "632319829206",
+
+ appId:
+  "1:632319829206:web:ae8ea88684ccb061311577",
+
+ measurementId:
+  "G-56VDJH0YVJ"
+
+};
+
+/* Initialize */
+
+var app;
+
+try{
+
+ app = firebase.app("mainSellerApp");
+
+}catch(e){
+
+ app = firebase.initializeApp(
+  firebaseConfig,
+  "mainSellerApp"
+ );
+
+}
+
+var auth = app.auth();
+
+var db = app.database();
+
+/*
+ Shared Catalog
+ Seller 1 နှင့် Seller 2 တို့
+ ဒီစာရင်းကို ဖတ်မည်။
+*/
+
+var catalogRef = db.ref("catalog");
+
+var items = [];
+
+var revision = 0;
+
+var ready = false;
+var dirty = false;
+var saving = false;
+var connected = false;
+var conflict = false;
+
+var unsubscribe = null;
+var connectionCallback = null;
 
 /* Helpers */
 
-function num(v){
- const n=Number(v);
- return Number.isFinite(n)?Math.max(0,n):0;
+function fresh(){
+
+ return {
+
+  id:
+   "p_" +
+   Date.now().toString(36) +
+   Math.random().toString(36).slice(2),
+
+  name:"",
+
+  baseQty:"",
+
+  baseCost:""
+
+ };
+
 }
 
+/* Normalize */
+
+function normalize(arr){
+
+ if(!Array.isArray(arr)){
+  return [];
+ }
+
+ return arr
+ .filter(function(x){
+
+  return x &&
+   typeof x === "object";
+
+ })
+ .map(function(x){
+
+  return {
+
+   id:String(
+    x.id || fresh().id
+   ),
+
+   name:String(
+    x.name || ""
+   ),
+
+   baseQty:String(
+    x.baseQty != null
+     ? x.baseQty
+     : x.qty != null
+     ? x.qty
+     : ""
+   ),
+
+   baseCost:String(
+    x.baseCost != null
+     ? x.baseCost
+     : x.cost != null
+     ? x.cost
+     : ""
+   )
+
+  };
+
+ });
+
+}
+
+/* Number */
+
+function num(v){
+
+ var n = Number(v);
+
+ return isFinite(n)
+  ? Math.max(0,n)
+  : 0;
+
+}
+
+/* Format */
+
 function fmt(v){
+
  return Number(v).toLocaleString(
   "en-US",
-  {maximumFractionDigits:2}
+  {
+   maximumFractionDigits:2
+  }
  );
+
 }
 
 function money(v){
- return fmt(v)+" ကျပ်";
+
+ return fmt(v) + " ကျပ်";
+
 }
 
 function packet(v){
- return fmt(v)+" ထုပ်";
+
+ return fmt(v) + " ထုပ်";
+
 }
 
-function fresh(){
- return {
-  id:Date.now().toString(36)+
-     Math.random().toString(36).slice(2),
-  name:"",
-  qty:"",
-  cost:"",
-  sellPrice:"",
-  sold:""
- };
+/* Status */
+
+function message(text,error){
+
+ $("saveStatus").textContent = text;
+
+ $("saveStatus").className =
+  "status " +
+  (error ? "error" : "success");
+
 }
 
-function normalize(list){
- if(!Array.isArray(list)){
-  return [fresh()];
- }
+/* Mark Changed */
 
- const cleaned=list.slice(0,10000).map(x=>({
-  id:String(x?.id||fresh().id),
-  name:String(x?.name??""),
-  qty:String(x?.qty??""),
-  cost:String(x?.cost??""),
-  sellPrice:String(x?.sellPrice??""),
-  sold:String(x?.sold??"")
- }));
+function changed(){
 
- return cleaned.length?cleaned:[fresh()];
-}
+ dirty = true;
 
-function itemName(x,i){
- return String(x.name||"").trim()||
-  "မုန့်အမည် မထည့်ရသေး ("+(i+1)+")";
-}
-
-function showStatus(message,error=false){
- el("saveStatus").textContent=message;
- el("saveStatus").className=
-  "status "+(error?"error":"success");
-}
-
-function updateSaveButton(){
- const btn=el("saveBtn");
-
- btn.disabled=saving;
- btn.textContent=saving
-  ?"သိမ်းဆည်းနေပါသည်..."
-  :"💾 Save မည်။";
-}
-
-function draftKey(){
- return DRAFT_KEY+"_"+auth.currentUser.uid;
-}
-
-function rememberDraft(){
- if(!auth.currentUser)return;
-
- try{
-  localStorage.setItem(
-   draftKey(),
-   JSON.stringify({items,revision})
-  );
- }catch(e){}
-}
-
-function clearDraft(){
- if(!auth.currentUser)return;
-
- try{
-  localStorage.removeItem(draftKey());
- }catch(e){}
-}
-
-function markDirty(){
- dirty=true;
- rememberDraft();
-
- showStatus(
+ message(
   "စာရင်းပြင်ဆင်ထားပါသည်။ Save နှိပ်ပါ။"
  );
+
 }
 
-function updateConnection(){
- el("connectionStatus").textContent=
-  connected
-  ?"● Online ချိတ်ဆက်ထားပါသည်"
-  :"● ချိတ်ဆက်မှု မရှိသေးပါ ။ Vpn လိုအပ်ပါသည်။";
-}
+/* Input Field */
 
-function lockInputs(value){
- document.querySelectorAll(
-  "#items input,#items button,"+
-  "#addBtn,#resetBtn,#restoreBtn,"+
-  "#importOldBtn"
- ).forEach(x=>{
-  x.disabled=value;
- });
-}
+function inputRow(
+ item,
+ key,
+ labelText,
+ type
+){
 
-/* Login */
+ var box = document.createElement("div");
 
-el("loginForm").onsubmit=async e=>{
- e.preventDefault();
+ var label = document.createElement("label");
 
- const email=el("email").value.trim();
- const password=el("password").value;
- const button=el("loginForm")
-  .querySelector("button");
+ var input = document.createElement("input");
 
- button.disabled=true;
+ label.textContent = labelText;
 
- el("loginStatus").textContent=
-  "Login ဝင်နေပါသည်...";
+ input.type = type;
 
- try{
-  await signInWithEmailAndPassword(
-   auth,email,password
-  );
+ input.value = item[key];
 
-  el("password").value="";
+ if(type === "number"){
 
- }catch(error){
-  el("loginStatus").textContent=
-   "Login မဝင်နိုင်ပါ။ Email နှင့် Password စစ်ဆေးပါ။";
- }finally{
-  button.disabled=false;
- }
-};
+  input.min = "0";
 
-/* Authentication */
+  input.step =
+   key === "baseQty"
+   ? "1"
+   : "any";
 
-onAuthStateChanged(auth,user=>{
-
- if(unsubscribe){
-  unsubscribe();
-  unsubscribe=null;
  }
 
- if(unsubscribeConnection){
-  unsubscribeConnection();
-  unsubscribeConnection=null;
- }
+ input.oninput = function(){
 
- ready=false;
- dirty=false;
- saving=false;
- connected=false;
- conflict=false;
- revision=0;
- items=[];
+  item[key] = input.value;
 
- el("loading").hidden=true;
- el("conflictBox").hidden=true;
+  changed();
 
- if(!user){
-  userRef=null;
-  el("appArea").hidden=true;
-  el("loginArea").hidden=false;
-  return;
- }
-
- el("loginArea").hidden=true;
- el("appArea").hidden=false;
-
- el("accountEmail").textContent=user.email;
-
- showStatus("Online စာရင်းဖတ်နေပါသည်...");
-
- userRef=ref(
-  db,"users/"+user.uid+"/sales"
- );
-
- unsubscribeConnection=onValue(
-  ref(db,".info/connected"),
-  snap=>{
-   connected=snap.val()===true;
-   updateConnection();
-  }
- );
-
- unsubscribe=onValue(
-  userRef,
-  snap=>{
-
-   const data=snap.val();
-   const remoteRevision=
-    Number(data?.revision)||0;
-
-   if(!ready){
-    revision=remoteRevision;
-    items=normalize(data?.items);
-    ready=true;
-    dirty=false;
-    render();
-    checkOldData();
-    showStatus("Online စာရင်း ရရှိပြီးပါပြီ။");
-    return;
-   }
-
-   if(saving)return;
-
-   if(dirty){
-
-    if(remoteRevision!==revision){
-     conflict=true;
-     el("conflictBox").hidden=false;
-     showStatus(
-      "အခြားဖုန်းတွင် စာရင်းပြောင်းထားပါသည်။",
-      true
-     );
-    }
-
-    return;
-   }
-
-   revision=remoteRevision;
-   items=normalize(data?.items);
-
-   conflict=false;
-   el("conflictBox").hidden=true;
-
-   render();
-
-  },
-  error=>{
-   showStatus(
-    "Firebase Database ဖတ်မရပါ။ Rules ကိုစစ်ဆေးပါ။",
-    true
-   );
-  }
- );
-
-});
-
-/* Input */
-
-function inputBox(x,field,labelText,type){
-
- const box=document.createElement("div");
- const label=document.createElement("label");
- const inp=document.createElement("input");
-
- label.textContent=labelText;
- inp.type=type;
- inp.value=x[field]??"";
-
- inp.placeholder=type==="text"
-  ?"မုန့်အမည်":"0";
-
- if(type==="number"){
-  inp.min="0";
-  inp.step=["qty","sold"].includes(field)
-   ?"1":"any";
- }
-
- inp.addEventListener("input",()=>{
-  x[field]=inp.value;
-  markDirty();
   calculate();
- });
 
- box.append(label,inp);
+ };
+
+ box.appendChild(label);
+
+ box.appendChild(input);
+
  return box;
+
 }
 
-function line(label,value,cls=""){
-
- const row=document.createElement("div");
- row.className="line";
-
- const left=document.createElement("span");
- const right=document.createElement("strong");
-
- left.textContent=label;
- right.textContent=value;
-
- if(cls)right.className=cls;
-
- row.append(left,right);
- return row;
-}
-
-/* Render */
+/* Render Items */
 
 function render(){
 
- const container=el("items");
- container.replaceChildren();
+ var area = $("items");
 
- items.forEach((x,i)=>{
+ area.innerHTML = "";
 
-  const card=document.createElement("div");
-  card.className="card";
+ items.forEach(function(item,index){
 
-  const heading=document.createElement("div");
-  heading.className="card-title";
+  var card =
+   document.createElement("div");
 
-  const title=document.createElement("span");
-  title.textContent="စဉ် "+(i+1);
+  card.className = "card";
 
-  const del=document.createElement("button");
-  del.className="delete";
-  del.textContent="ဖျက်ရန်";
+  var top =
+   document.createElement("div");
 
-  del.onclick=()=>{
+  top.className = "top";
+
+  var title =
+   document.createElement("h3");
+
+  title.textContent =
+   "စဉ် " + (index+1);
+
+  var del =
+   document.createElement("button");
+
+  del.className = "delete";
+
+  del.textContent = "ဖျက်ရန်";
+
+  del.onclick = function(){
 
    if(!confirm(
     "ဒီမုန့်အမျိုးအစားကို ဖျက်မှာ သေချာပါသလား။"
-   ))return;
+   )){
+    return;
+   }
 
-   items=items.filter(y=>y.id!==x.id);
+   items = items.filter(
+    function(x){
 
-   if(!items.length)items=[fresh()];
+     return x.id !== item.id;
 
-   markDirty();
+    }
+   );
+
+   changed();
+
    render();
+
   };
 
-  heading.append(title,del);
+  top.appendChild(title);
 
-  const grid=document.createElement("div");
-  grid.className="grid";
+  top.appendChild(del);
 
-  grid.append(
-   inputBox(x,"qty","မူရင်းအထုပ်","number"),
-   inputBox(x,"cost","တစ်ထုပ်မူရင်းဈေး (ကျပ်)","number"),
-   inputBox(x,"sellPrice","တစ်ထုပ်ရောင်းဈေး (ကျပ်)","number"),
-   inputBox(x,"sold","ရောင်းပြီးအထုပ်","number")
+  var grid =
+   document.createElement("div");
+
+  grid.className = "grid";
+
+  grid.appendChild(
+   inputRow(
+    item,
+    "baseQty",
+    "မူရင်းအထုပ်",
+    "number"
+   )
   );
 
-  const result=document.createElement("div");
-  result.className="result";
-  result.id="result-"+x.id;
-
-  card.append(
-   heading,
-   inputBox(x,"name","မုန့်အမျိုးအစား","text"),
-   grid,
-   result
+  grid.appendChild(
+   inputRow(
+    item,
+    "baseCost",
+    "တစ်ထုပ်မူရင်းဈေး (ကျပ်)",
+    "number"
+   )
   );
 
-  container.append(card);
+  card.appendChild(top);
+
+  card.appendChild(
+   inputRow(
+    item,
+    "name",
+    "မုန့်အမျိုးအစား",
+    "text"
+   )
+  );
+
+  card.appendChild(grid);
+
+  area.appendChild(card);
+
  });
 
  calculate();
+
 }
 
-/* Add */
-
-el("addBtn").onclick=()=>{
-
- if(!ready)return;
-
- items.push(fresh());
- markDirty();
- render();
-};
-
-/* Calculate */
+/* Summary */
 
 function calculate(){
 
- let qty=0;
- let sold=0;
- let remain=0;
- let cost=0;
- let revenue=0;
+ var totalQty = 0;
 
- [
-  "qtyDetails",
-  "soldDetails",
-  "remainDetails",
-  "revenueDetails",
-  "salesTableBody"
- ].forEach(id=>{
-  el(id).replaceChildren();
- });
+ var totalValue = 0;
 
- items.forEach((x,i)=>{
+ var totalTypes = 0;
 
-  const q=num(x.qty);
-  const s=num(x.sold);
-  const c=num(x.cost);
-  const sp=num(x.sellPrice);
+ items.forEach(function(item){
 
-  const left=q-s;
-  const original=q*c;
-  const sales=s*sp;
-  const soldCost=s*c;
-  const profit=sales-soldCost;
-
-  const name=itemName(x,i);
-
-  qty+=q;
-  sold+=s;
-  remain+=left;
-  cost+=original;
-  revenue+=sales;
-
-  const result=el("result-"+x.id);
-
-  result.replaceChildren(
-   line("မူရင်းတန်ဖိုး",money(original)),
-   line("ရောင်းရငွေ",money(sales)),
-   line(
-    "ရောင်းပြီးအထုပ်၏ မူရင်းကုန်ကျငွေ",
-    money(soldCost)
-   ),
-   line("လက်ကျန်အထုပ်",packet(left)),
-   line(
-    "အမြတ် / အရှုံး",
-    money(profit),
-    profit>=0?"profit":"loss"
-   )
-  );
-
-  if(s>q){
-   const warning=document.createElement("p");
-   warning.className="warning";
-
-   warning.textContent=
-    "ရောင်းပြီးအထုပ်သည် မူရင်းအထုပ်ထက် များနေပါသည်။";
-
-   result.append(warning);
+  if(
+   String(item.name).trim() !== ""
+  ){
+   totalTypes++;
   }
 
-  el("qtyDetails").append(
-   line(name,packet(q))
-  );
+  var qty = num(item.baseQty);
 
-  el("soldDetails").append(
-   line(name,packet(s))
-  );
+  var cost = num(item.baseCost);
 
-  el("remainDetails").append(
-   line(name,packet(left))
-  );
+  totalQty += qty;
 
-  el("revenueDetails").append(
-   line(name,money(sales))
-  );
+  totalValue += qty * cost;
 
-  // ရောင်းရငွေ ဇယား
-  const tr=document.createElement("tr");
-
-  [
-   String(i+1),
-   name,
-   fmt(s),
-   money(sp),
-   money(sales)
-  ].forEach(value=>{
-
-   const td=document.createElement("td");
-   td.textContent=value;
-   tr.append(td);
-  });
-
-  el("salesTableBody").append(tr);
  });
 
- el("types").textContent=
-  items.length+" မျိုး";
+ $("totalTypes").textContent =
+  totalTypes + " မျိုး";
 
- el("totalQty").textContent=packet(qty);
- el("totalSold").textContent=packet(sold);
- el("totalRemain").textContent=packet(remain);
- el("totalCost").textContent=money(cost);
- el("totalRevenue").textContent=money(revenue);
- el("summarySold").textContent=fmt(sold);
- el("summaryRevenue").textContent=money(revenue);
+ $("totalQty").textContent =
+  packet(totalQty);
+
+ $("totalValue").textContent =
+  money(totalValue);
+
 }
+
+/* Add Item */
+
+$("addBtn").onclick = function(){
+
+ if(!ready || saving){
+  return;
+ }
+
+ items.push(fresh());
+
+ changed();
+
+ render();
+
+};
+
+/* Login */
+
+$("loginForm").onsubmit = function(e){
+
+ e.preventDefault();
+
+ var button =
+  this.querySelector("button");
+
+ button.disabled = true;
+
+ $("loginStatus").textContent =
+  "Login ဝင်နေပါသည်...";
+
+ auth.signInWithEmailAndPassword(
+
+  $("email").value.trim(),
+
+  $("password").value
+
+ ).then(function(){
+
+  $("password").value = "";
+
+  $("loginStatus").textContent = "";
+
+ }).catch(function(error){
+
+  $("loginStatus").textContent =
+   error.code || error.message;
+
+ }).then(function(){
+
+  button.disabled = false;
+
+ });
+
+};
+
+/* Show Cloud Data */
+
+function showCloud(data){
+
+ revision = Number(
+  data && data.revision
+ ) || 0;
+
+ items = normalize(
+  data && data.items
+ );
+
+ if(!items.length){
+
+  items = [fresh()];
+
+ }
+
+ ready = true;
+
+ dirty = false;
+
+ conflict = false;
+
+ render();
+
+}
+
+/* Authentication */
+
+auth.onAuthStateChanged(
+ function(user){
+
+  if(unsubscribe){
+
+   unsubscribe();
+
+   unsubscribe = null;
+
+  }
+
+  if(connectionCallback){
+
+   db.ref(".info/connected")
+    .off(
+     "value",
+     connectionCallback
+    );
+
+   connectionCallback = null;
+
+  }
+
+  ready = false;
+
+  dirty = false;
+
+  conflict = false;
+
+  connected = false;
+
+  revision = 0;
+
+  $("loading").hidden = true;
+
+  if(!user){
+
+   $("loginBox").hidden = false;
+
+   $("appBox").hidden = true;
+
+   return;
+
+  }
+
+  $("loginBox").hidden = true;
+
+  $("appBox").hidden = false;
+
+  $("account").textContent =
+   user.email;
+
+  message(
+   "Online မူရင်းစာရင်း ဖတ်နေပါသည်..."
+  );
+
+  connectionCallback =
+   function(snapshot){
+
+    connected =
+     snapshot.val() === true;
+
+    $("connection").textContent =
+     connected
+     ? "● Firebase Online ချိတ်ဆက်ထားသည်"
+     : "● Firebase ချိတ်ဆက်မှု မရှိပါ";
+
+   };
+
+  db.ref(".info/connected").on(
+   "value",
+   connectionCallback
+  );
+
+  var callback = function(snapshot){
+
+   var data = snapshot.val();
+
+   var remote = Number(
+    data && data.revision
+   ) || 0;
+
+   if(!ready){
+
+    showCloud(data);
+
+    message(
+     "မူရင်းစာရင်း ရရှိပြီးပါပြီ။"
+    );
+
+    return;
+
+   }
+
+   if(saving){
+    return;
+   }
+
+   if(dirty){
+
+    if(remote !== revision){
+
+     conflict = true;
+
+     message(
+      "အခြားဖုန်းမှ စာရင်းပြောင်းထားပါသည်။ " +
+      "Refresh လုပ်ပြီး ပြန်စစ်ပါ။",
+      true
+     );
+
+    }
+
+    return;
+
+   }
+
+   showCloud(data);
+
+  };
+
+  catalogRef.on(
+   "value",
+   callback,
+   function(error){
+
+    message(
+     "Database Error: " +
+     (error.code || error.message),
+     true
+    );
+
+   }
+  );
+
+  unsubscribe = function(){
+
+   catalogRef.off(
+    "value",
+    callback
+   );
+
+  };
+
+ }
+);
 
 /* Online Save */
 
-el("saveBtn").onclick=async()=>{
+$("saveBtn").onclick = async function(){
 
- if(saving)return;
-
- if(!ready||!userRef){
-  showStatus(
-   "Online စာရင်း မဖတ်ရသေးပါ။",
-   true
-  );
+ if(saving){
   return;
  }
 
- if(!connected){
-  showStatus(
-   "Internet / Firebase မချိတ်ဆက်ရသေးပါ။",
+ if(!ready || !connected){
+
+  message(
+   "Firebase ချိတ်ဆက်မှုကို စစ်ဆေးပါ။",
    true
   );
+
   return;
+
  }
 
  if(conflict){
-  showStatus(
-   "အခြားဖုန်းမှ စာရင်းပြောင်းထားပါသည်။ Online စာရင်းပြန်ယူပါ။",
+
+  message(
+   "အခြားဖုန်းမှာ စာရင်းပြောင်းထားပါသည်။ " +
+   "Refresh လုပ်ပြီး ပြန်စစ်ပါ။",
    true
   );
+
   return;
+
  }
 
- saving=true;
- updateSaveButton();
- lockInputs(true);
+ var clean = items.filter(
+  function(x){
 
- showStatus("Online Database ထဲ သိမ်းနေပါသည်...");
+   return x.name.trim() !== "";
 
- const expectedRevision=revision;
- const savedItems=JSON.parse(
-  JSON.stringify(items)
+  }
  );
 
- try{
+ /* Validate */
 
-  const result=await runTransaction(
-   userRef,
-   current=>{
+ var names = {};
 
-    const currentRevision=
-     Number(current?.revision)||0;
+ for(
+  var i=0;
+  i<clean.length;
+  i++
+ ){
 
-    if(currentRevision!==expectedRevision){
-     return;
-    }
+  var x = clean[i];
 
-    return {
-     revision:currentRevision+1,
-     items:savedItems,
-     updatedAt:Date.now()
-    };
-   },
-   {applyLocally:false}
-  );
+  var key =
+   x.name.trim().toLowerCase();
 
-  if(!result.committed){
+  if(names[key]){
 
-   conflict=true;
-   el("conflictBox").hidden=false;
-
-   showStatus(
-    "အခြားဖုန်းမှ စာရင်းပြောင်းထားသဖြင့် Save မလုပ်ခဲ့ပါ။",
+   message(
+    "မုန့်အမည် ထပ်နေပါသည်။",
     true
    );
 
-  }else{
+   return;
 
-   const data=result.snapshot.val();
-
-   revision=Number(data.revision)||0;
-   items=normalize(data.items);
-
-   dirty=false;
-   conflict=false;
-
-   clearDraft();
-
-   el("conflictBox").hidden=true;
-
-   render();
-
-   showStatus(
-    "✓ Firebase Online Database ထဲ သိမ်းဆည်းပြီးပါပြီ။"
-   );
   }
 
- }catch(err){
+  names[key] = true;
 
-  showStatus(
-   "Online Save မအောင်မြင်ပါ။ Internet နှင့် Rules ကိုစစ်ဆေးပါ။",
-   true
-  );
+  var qty = Number(x.baseQty);
 
- }finally{
-
-  saving=false;
-  lockInputs(false);
-  updateSaveButton();
- }
-
-};
-
-/* Online စာရင်းပြန်ယူရန် */
-
-el("reloadCloud").onclick=async()=>{
-
- if(!userRef||saving)return;
-
- if(!confirm(
-  "မသိမ်းရသေးသော ပြင်ဆင်ချက်များ ပျောက်နိုင်သည်။ Online စာရင်းပြန်ယူမလား။"
- ))return;
-
- try{
-
-  const snapshot=await get(userRef);
-  const data=snapshot.val();
-
-  items=normalize(data?.items);
-  revision=Number(data?.revision)||0;
-
-  dirty=false;
-  conflict=false;
-
-  clearDraft();
-
-  el("conflictBox").hidden=true;
-
-  render();
-
-  showStatus("Online စာရင်း ပြန်ယူပြီးပါပြီ။");
-
- }catch(error){
-
-  showStatus(
-   "Online စာရင်းပြန်ယူ၍ မရပါ။",
-   true
-  );
- }
-};
-
-/* Backup Download */
-
-el("backupBtn").onclick=()=>{
-
- const data={
-  version:1,
-  createdAt:new Date().toISOString(),
-  items
- };
-
- const blob=new Blob(
-  [JSON.stringify(data,null,2)],
-  {type:"application/json"}
- );
-
- const url=URL.createObjectURL(blob);
- const a=document.createElement("a");
-
- a.href=url;
-
- a.download=
-  "snack-backup-"+
-  new Date().toISOString().slice(0,10)+
-  ".json";
-
- document.body.append(a);
- a.click();
- a.remove();
-
- setTimeout(()=>{
-  URL.revokeObjectURL(url);
- },5000);
-};
-
-/* Backup Restore */
-
-el("restoreBtn").onclick=()=>{
- el("backupFile").click();
-};
-
-el("backupFile").onchange=async e=>{
-
- const file=e.target.files[0];
- e.target.value="";
-
- if(!file)return;
-
- try{
-
-  const data=JSON.parse(
-   await file.text()
-  );
+  var cost = Number(x.baseCost);
 
   if(
-   !data||
-   !Array.isArray(data.items)||
-   data.items.length>10000||
-   !data.items.every(x=>
-    x&&
-    typeof x==="object"&&
-    ["name","qty","cost","sellPrice","sold"]
-    .every(k=>
-     x[k]===undefined||
-     x[k]===null||
-     ["string","number"].includes(
-      typeof x[k]
-     )
-    )
-   )
+   !isFinite(qty) ||
+   qty < 0 ||
+   !Number.isInteger(qty) ||
+   !isFinite(cost) ||
+   cost < 0
   ){
-   throw Error("Invalid backup");
+
+   message(
+    "မူရင်းအထုပ်နှင့် မူရင်းဈေးကို စစ်ဆေးပါ။",
+    true
+   );
+
+   return;
+
   }
 
-  if(!confirm(
-   "လက်ရှိစာရင်းကို Backup ဖြင့် အစားထိုးမလား။"
-  ))return;
-
-  items=normalize(data.items);
-  markDirty();
-  render();
-
-  showStatus(
-   "Backup ပြန်ထည့်ပြီးပါပြီ။ Save နှိပ်ပါ။"
-  );
-
- }catch(error){
-
-  alert("Backup JSON ဖိုင်မမှန်ကန်ပါ။");
- }
-};
-
-/* Old Browser Data */
-
-function checkOldData(){
-
- try{
-
-  const old=JSON.parse(
-   localStorage.getItem(OLD_KEY)
-  );
-
-  if(Array.isArray(old)&&old.length){
-   el("importOldBtn").hidden=false;
-  }
-
- }catch(e){}
-}
-
-el("importOldBtn").onclick=()=>{
-
- try{
-
-  const old=JSON.parse(
-   localStorage.getItem(OLD_KEY)
-  );
-
-  if(!Array.isArray(old))return;
-
-  if(!confirm(
-   "ယခင် Browser စာရင်း ပြန်ယူမလား။"
-  ))return;
-
-  items=normalize(old);
-  markDirty();
-  render();
-
-  showStatus(
-   "ယခင်စာရင်း ပြန်ယူပြီးပါပြီ။ Save နှိပ်ပါ။"
-  );
-
- }catch(error){
-
-  alert("ယခင်စာရင်း မဖတ်နိုင်ပါ။");
- }
-};
-
-/*
- စာရင်းအားလုံး ရှင်းလင်းရန်
-
- အရေးကြီးသော ပြင်ဆင်ချက်:
- ခလုတ်နှိပ်ပြီး OK နှိပ်လိုက်သည်နှင့်
- Firebase Database မှာပါ
- ချက်ချင်း ရှင်းလင်းသိမ်းဆည်းမည်။
-*/
-
-el("resetBtn").onclick=async()=>{
-
- if(!confirm(
-  "စာရင်းအားလုံးကို Firebase Online Database မှပါ အပြီးရှင်းလင်းမှာ သေချာပါသလား။"
- )){
-  return;
  }
 
- if(!ready||!userRef||saving){
+ saving = true;
 
-  showStatus(
-   "Online စာရင်း မဖတ်ရသေးပါ။",
-   true
-  );
-  return;
- }
+ $("saveBtn").disabled = true;
 
- if(!connected){
+ message(
+  "Firebase Online Database ထဲ သိမ်းနေပါသည်..."
+ );
 
-  showStatus(
-   "Internet မချိတ်ဆက်ထားပါ။ Online စာရင်း မဖျက်နိုင်ပါ။",
-   true
-  );
-  return;
- }
+ var expected = revision;
 
- if(conflict){
-
-  showStatus(
-   "အခြားဖုန်းမှ စာရင်းပြောင်းထားပါသည်။ Online စာရင်းပြန်ယူပြီးမှ ဖျက်ပါ။",
-   true
-  );
-  return;
- }
-
- // Firebase မှာ အစားထိုးမယ့်
- // ဗလာမုန့်စာရင်းတစ်ခု
- const emptyItems=[fresh()];
-
- const expectedRevision=revision;
-
- saving=true;
- updateSaveButton();
- lockInputs(true);
-
- showStatus(
-  "Firebase Online Database မှ စာရင်းအားလုံး ရှင်းလင်းနေပါသည်..."
+ var payload = JSON.parse(
+  JSON.stringify(clean)
  );
 
  try{
 
-  const result=await runTransaction(
-   userRef,
-   current=>{
+  var result =
+   await catalogRef.transaction(
 
-    const currentRevision=
-     Number(current?.revision)||0;
+    function(current){
 
-    // အခြားဖုန်းမှာ Save လုပ်ပြီးသား
-    // ဖြစ်နေလျှင် မတော်တဆ မဖျက်ရန်
-    if(currentRevision!==expectedRevision){
-     return;
-    }
+     var currentRev =
+      Number(
+       current && current.revision
+      ) || 0;
 
-    return {
-     revision:currentRevision+1,
-     items:emptyItems,
-     updatedAt:Date.now()
-    };
+     if(
+      currentRev !== expected
+     ){
+      return;
+     }
 
-   },
-   {applyLocally:false}
-  );
+     return {
+
+      revision:
+       currentRev + 1,
+
+      items:payload,
+
+      updatedAt:Date.now()
+
+     };
+
+    },
+
+    undefined,
+
+    false
+
+   );
 
   if(!result.committed){
 
-   conflict=true;
+   conflict = true;
 
-   el("conflictBox").hidden=false;
-
-   showStatus(
-    "အခြားဖုန်းမှ စာရင်းပြောင်းထားသဖြင့် မဖျက်ခဲ့ပါ။ Online စာရင်းပြန်ယူပြီး ထပ်လုပ်ပါ။",
+   message(
+    "အခြားဖုန်းမှာ စာရင်းပြောင်းထားသဖြင့် Save မလုပ်ခဲ့ပါ။",
     true
    );
 
   }else{
 
-   const data=result.snapshot.val();
+   showCloud(
+    result.snapshot.val()
+   );
 
-   revision=Number(data.revision)||0;
-
-   items=normalize(data.items);
-
-   dirty=false;
-   conflict=false;
-
-   // ယခင် မသိမ်းရသေးသော
-   // Local Draft ကိုပါ ရှင်းလင်းရန်
-   clearDraft();
-
-   el("conflictBox").hidden=true;
-
-   render();
-
-   showStatus(
-    "✓ စာရင်းအားလုံးကို Firebase Online Database မှ အောင်မြင်စွာ ရှင်းလင်းပြီးပါပြီ။"
+   message(
+    "✓ Save ပြီးပါပြီ။ " +
+    "အရောင်း ၁ နှင့် အရောင်း ၂ တွင် " +
+    "မုန့်စာရင်း အလိုအလျောက်ပေါ်ပါမည်။"
    );
 
   }
 
  }catch(error){
 
-  showStatus(
-   "စာရင်းရှင်းလင်းခြင်း မအောင်မြင်ပါ။ Internet နှင့် Firebase Rules ကို စစ်ဆေးပါ။",
+  message(
+   "Save Error: " +
+   (error.code || error.message),
    true
   );
 
  }finally{
 
-  saving=false;
-  lockInputs(false);
-  updateSaveButton();
+  saving = false;
+
+  $("saveBtn").disabled = false;
+
  }
 
 };
 
-/* Unsaved Changes */
+/* Unsaved Warning */
 
 window.addEventListener(
- "beforeunload",e=>{
+ "beforeunload",
+ function(e){
 
   if(dirty){
+
    e.preventDefault();
-   e.returnValue="";
+
+   e.returnValue = "";
+
   }
 
  }
 );
 
-updateSaveButton();
-
+})();
 </script>
+
 </body>
 </html>
