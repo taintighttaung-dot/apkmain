@@ -3,2051 +3,447 @@
 <html lang="my">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport"
- content="width=device-width,initial-scale=1">
-
-<title>အရောင်း ၁ - မုန့်အရောင်းစာရင်း</title>
-
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>မုန့်အရောင်းစာရင်း</title>
 <style>
 *{box-sizing:border-box}
 [hidden]{display:none!important}
-
-body{
- margin:0;
- padding:15px;
- background:#f3f6f4;
- color:#263b32;
- font-family:Arial,sans-serif;
-}
-
-.container{
- max-width:650px;
- margin:auto;
- padding-bottom:25px;
-}
-
-.header{
- background:#176b51;
- color:white;
- text-align:center;
- padding:24px 16px;
- border-radius:18px;
- margin-bottom:18px;
-}
-
-.header h2{margin:0 0 8px}
-.header p{margin:0;font-size:14px}
-
-.card{
- background:white;
- padding:19px;
- border-radius:18px;
- margin-bottom:18px;
- box-shadow:0 4px 15px #0000000d;
-}
-
-.top,.line{
- display:flex;
- justify-content:space-between;
- align-items:center;
- gap:12px;
-}
-
-h3{margin:0 0 12px}
-
-label{
- display:block;
- margin:14px 0 7px;
- font-size:14px;
- color:#52645a;
-}
-
-input,select{
- width:100%;
- min-width:0;
- padding:13px;
- border:1px solid #d2ddd6;
- border-radius:11px;
- background:white;
- color:#263b32;
- font-size:16px;
-}
-
-input:focus,select:focus{
- outline:2px solid #b7ddc8;
-}
-
-input[readonly]{
- background:#e8f5ee;
- font-weight:bold;
-}
-
-.grid{
- display:grid;
- grid-template-columns:
-  repeat(2,minmax(0,1fr));
- gap:12px;
-}
-
-button{
- padding:14px;
- border-radius:11px;
- font-size:15px;
- font-weight:bold;
- cursor:pointer;
-}
-
-button:disabled{
- opacity:.65;
-}
-
-.primary{
- width:100%;
- background:#176b51;
- color:white;
- border:0;
-}
-
-.secondary{
- background:#e8f5ee;
- color:#176b51;
- border:1px solid #c0d9cc;
-}
-
-.add{
- width:100%;
- background:white;
- color:#176b51;
- border:2px dashed #176b51;
-}
-
-.delete{
- background:#fff0f0;
- color:#c62828;
- border:0;
- padding:11px 13px;
-}
-
-.result{
- background:#e8f5ee;
- padding:15px;
- border-radius:13px;
- margin-top:18px;
-}
-
-.line{
- padding:11px 0;
- border-bottom:1px solid #d4e5db;
-}
-
-.line:last-child{
- border-bottom:0;
-}
-
-.line strong{
- text-align:right;
- overflow-wrap:anywhere;
-}
-
-.status{
- font-size:14px;
- line-height:1.6;
- margin:12px 0;
- color:#176b51;
- overflow-wrap:anywhere;
-}
-
-.error,.warning{
- color:#c62828;
-}
-
-.warning{
- font-size:13px;
-}
-
-.small{
- font-size:12px;
- color:#65786d;
- line-height:1.6;
-}
-
-.summary{
- background:#176b51;
- color:white;
- border-radius:18px;
- padding:20px;
- margin:20px 0;
-}
-
-.summary .line{
- border-color:#ffffff35;
-}
-
-.details{
- background:#ffffff15;
- border-radius:12px;
- padding:7px 12px;
- margin:12px 0;
-}
-
-/* အရောင်းဘောင်ချာ */
-
-.voucher{
- background:white;
- color:#263b32;
- border-radius:15px;
- padding:16px;
- margin-top:25px;
-}
-
-.voucher-title{
- text-align:center;
- font-weight:bold;
- font-size:20px;
- margin-bottom:15px;
-}
-
-.voucher-info{
- display:grid;
- grid-template-columns:1fr 1fr;
- gap:12px;
- margin-top:16px;
-}
-
-.info-box{
- background:#e8f5ee;
- border-radius:11px;
- padding:12px;
- min-width:0;
-}
-
-.info-box span{
- display:block;
- font-size:12px;
- color:#52645a;
- margin-bottom:8px;
-}
-
-.info-box strong{
- display:block;
- font-size:14px;
- overflow-wrap:anywhere;
-}
-
-.tablewrap{
- overflow-x:auto;
- margin-top:16px;
-}
-
-table{
- width:100%;
- min-width:390px;
- border-collapse:collapse;
- background:white;
- color:#263b32;
- font-size:12px;
-}
-
-th,td{
- border:1px solid #d4e5db;
- padding:9px 5px;
- overflow-wrap:anywhere;
-}
-
-th,tfoot{
- background:#e8f5ee;
- font-weight:bold;
-}
-
-th:nth-child(2){
- width:30%;
-}
-
-td:nth-child(n+3){
- text-align:right;
-}
-
-.total-line{
- display:flex;
- justify-content:space-between;
- gap:12px;
- padding-top:15px;
- margin-top:17px;
- border-top:1px solid #d4e5db;
- font-weight:bold;
-}
-
-.sticky{
- position:sticky;
- bottom:8px;
- z-index:10;
- background:#ffffffef;
- border-radius:15px;
- padding:12px;
- box-shadow:0 4px 15px #0002;
- margin-bottom:18px;
-}
-
-.sticky button{
- font-size:17px;
- min-height:56px;
-}
-
-.conflict{
- background:#fff8e7;
- border:1px solid #e6d19b;
-}
-
-.input-error{
- border:2px solid #d32f2f!important;
- background:#fff5f5!important;
-}
-
-.shop-warning{
- color:#c62828;
- font-size:13px;
- margin:8px 0 0;
-}
-
-@media(max-width:350px){
- .grid,.voucher-info{
-  grid-template-columns:1fr;
- }
-}
+body{margin:0;padding:15px;background:#f3f6f4;color:#263b32;font-family:Arial,sans-serif}
+main{max-width:650px;margin:auto;padding-bottom:80px}
+header{background:#176b51;color:white;border-radius:18px;padding:25px;text-align:center;margin-bottom:18px}
+header h2{margin:0 0 8px}
+.card{background:white;padding:19px;border-radius:18px;margin-bottom:18px;box-shadow:0 4px 15px #0000000d}
+.grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:12px}
+.flex,.line{display:flex;justify-content:space-between;align-items:center;gap:10px}
+h3{margin:0 0 14px}
+label{display:block;color:#52645a;font-size:14px;margin:13px 0 7px}
+input,select{width:100%;min-width:0;padding:13px;font-size:16px;border:1px solid #d3ddd7;border-radius:11px;background:white}
+input[readonly]{background:#e8f5ee;font-weight:bold}
+button{border:0;padding:14px;border-radius:11px;font-size:15px;font-weight:bold;cursor:pointer}
+button:disabled{opacity:.6}
+.primary{background:#176b51;color:white;width:100%}
+.add{background:white;color:#176b51;border:2px dashed #176b51;width:100%}
+.del{background:#fff0f0;color:#c62828}
+.result{background:#e8f5ee;border-radius:12px;padding:13px;margin-top:17px}
+.line{border-bottom:1px solid #cfe1d7;padding:11px 0}
+.line:last-child{border:0}
+.line strong{text-align:right}
+.summary{background:#176b51;color:white;padding:20px;border-radius:18px;margin:20px 0}
+.summary>.line{border-color:#ffffff45}
+.voucher{background:white;color:#263b32;border-radius:15px;padding:16px;margin-top:22px}
+.voucher h3{text-align:center}
+.info{background:#e8f5ee;padding:12px;border-radius:11px}
+.info small{display:block;margin-bottom:8px}
+.info strong{overflow-wrap:anywhere}
+.tablewrap{overflow-x:auto;margin-top:15px}
+table{border-collapse:collapse;width:100%;min-width:390px;font-size:12px}
+th,td{padding:9px 5px;border:1px solid #d3e2d9;overflow-wrap:anywhere}
+th,tfoot{background:#e8f5ee}
+td:nth-child(n+3){text-align:right}
+.total{display:flex;justify-content:space-between;gap:10px;margin-top:16px;border-top:1px solid #d3e2d9;padding-top:15px;font-weight:bold}
+.sticky{position:sticky;bottom:8px;background:#ffffffef;border-radius:15px;padding:12px;box-shadow:0 3px 15px #0002}
+.status{font-size:14px;color:#176b51;line-height:1.6;overflow-wrap:anywhere}
+.error{color:#bf2929!important}
+.invalid{border:2px solid #bf2929}
+small{color:#697a70}
+@media(max-width:350px){.grid{grid-template-columns:1fr}}
 </style>
 </head>
-
 <body>
+<main>
+<header>
+<h2 id="title">အရောင်း</h2>
+မုန့်အရောင်းနှင့် အမြတ်စာရင်း
+</header>
 
-<div class="container">
-
-<!-- HEADER -->
-
-<div class="header">
- <h2>အရောင်း ၁</h2>
- <p>မုန့်အရောင်းနှင့် အမြတ်စာရင်း</p>
-</div>
-
-<!-- LOADING -->
-
-<div id="loading" class="card">
- Firebase ချိတ်ဆက်နေပါသည်...
-</div>
-
-<!-- LOGIN -->
+<div id="loading" class="card">Firebase ချိတ်ဆက်နေပါသည်...</div>
 
 <div id="loginBox" class="card" hidden>
-
- <h3>အရောင်း ၁ Account ဝင်ရန်</h3>
-
- <form id="loginForm">
-
-  <label for="email">Email</label>
-
-  <input
-   id="email"
-   type="email"
-   autocomplete="username"
-   required>
-
-  <label for="password">Password</label>
-
-  <input
-   id="password"
-   type="password"
-   autocomplete="current-password"
-   required>
-
-  <button
-   type="submit"
-   class="primary"
-   style="margin-top:15px">
-   Login ဝင်မည်
-  </button>
-
- </form>
-
- <p id="loginStatus" class="status"></p>
-
+<h3>Seller Login</h3>
+<form id="loginForm">
+<label>Email</label><input id="email" type="email" required>
+<label>Password</label><input id="password" type="password" required>
+<button class="primary" style="margin-top:15px">Login ဝင်မည်</button>
+</form>
+<p id="loginStatus" class="status"></p>
 </div>
-
-<!-- MAIN APPLICATION -->
 
 <div id="appBox" hidden>
-
 <div class="card">
-
- <h3>အရောင်း ၁ - Online စာရင်း</h3>
-
- <div id="account" class="small"></div>
-
- <p id="connection" class="status">
-  Firebase ချိတ်ဆက်နေပါသည်...
- </p>
-
+<h3 id="onlineTitle">Online စာရင်း</h3>
+<small id="account"></small>
+<p id="connection" class="status">Connecting...</p>
 </div>
-
-<!-- CONFLICT -->
-
-<div id="conflictBox"
- class="card conflict" hidden>
-
- <p class="warning">
-  အခြားဖုန်းမှာ စာရင်းပြောင်းထားပါသည်။
-  မသိမ်းရသေးသောစာရင်းများကို
-  အလိုအလျောက် အစားမထိုးထားပါ။
- </p>
-
- <button id="reloadBtn"
-  class="secondary"
-  style="width:100%">
-  Online စာရင်းပြန်ယူရန်
- </button>
-
-</div>
-
-<!-- ITEMS -->
 
 <div id="items"></div>
-
 <div class="card">
-
- <button id="addBtn" class="add">
-  + မုန့်အမျိုးအစား ရွေးထည့်ရန်
- </button>
-
+<button id="addBtn" class="add">+ မုန့်အမျိုးအစား ရွေးထည့်ရန်</button>
 </div>
-
-<!-- SUMMARY -->
 
 <div class="summary">
+<h3>စုစုပေါင်း စာရင်းချုပ်</h3>
+<div class="line"><span>ရောင်းပြီးအထုပ်</span><strong id="totalQty">0 ထုပ်</strong></div>
+<div class="line"><span>ရောင်းရငွေ</span><strong id="totalRevenue">0 ကျပ်</strong></div>
+<div class="line"><span>အမြတ် / အရှုံး</span><strong id="totalProfit">0 ကျပ်</strong></div>
 
- <h3>စုစုပေါင်း စာရင်းချုပ်</h3>
+<div class="voucher" id="voucher">
+<h3>အရောင်းဘောင်ချာ</h3>
+<label>ဆိုင်အမည် *</label>
+<input id="shopName" type="text" placeholder="ဆိုင်အမည် မဖြစ်မနေ ဖြည့်ပါ">
+<p id="shopError" class="status error" hidden>ဆိုင်အမည် အရင်ဖြည့်ပါ။</p>
 
- <div class="line">
-  <span>ရောင်းပြီးအထုပ်စုစုပေါင်း</span>
-  <strong id="totalSold">0 ထုပ်</strong>
- </div>
-
- <div class="line">
-  <span>ရောင်းရငွေစုစုပေါင်း</span>
-  <strong id="totalRevenue">0 ကျပ်</strong>
- </div>
-
- <div class="line">
-  <span>အမြတ် / အရှုံး စုစုပေါင်း</span>
-  <strong id="totalProfit">0 ကျပ်</strong>
- </div>
-
- <h3 style="margin-top:24px">
-  မုန့်အမျိုးအစားအလိုက် ရောင်းရငွေ
- </h3>
-
- <div id="revenueDetails"
-  class="details"></div>
-
- <!-- အရောင်းဘောင်ချာ -->
-
- <div class="voucher" id="voucher">
-
-  <div class="voucher-title">
-   အရောင်းဘောင်ချာ
-  </div>
-
-  <label for="shopName">
-   ဆိုင်အမည်
-   <span style="color:#c62828">*</span>
-  </label>
-
-  <input
-   id="shopName"
-   type="text"
-   placeholder="ဆိုင်အမည် မဖြစ်မနေ ဖြည့်ပါ"
-   autocomplete="off"
-   required>
-
-  <p id="shopWarning"
-   class="shop-warning" hidden>
-   ❌ ဆိုင်အမည် အရင်ဖြည့်ပေးပါ။
-  </p>
-
-  <div class="voucher-info">
-
-   <div class="info-box">
-    <span>ရက်စွဲ</span>
-    <strong id="savedDate">
-     မသိမ်းရသေးပါ
-    </strong>
-   </div>
-
-   <div class="info-box">
-    <span>အချိန်</span>
-    <strong id="savedTime">
-     မသိမ်းရသေးပါ
-    </strong>
-   </div>
-
-  </div>
-
-  <!-- VOUCHER TABLE -->
-
-  <div class="tablewrap">
-
-   <table>
-
-    <thead>
-     <tr>
-      <th>စဉ်</th>
-      <th>မုန့်အမျိုးအစား</th>
-      <th>ဦးရေ</th>
-      <th>နှုန်း</th>
-      <th>ရောင်းရငွေ</th>
-     </tr>
-    </thead>
-
-    <tbody id="salesRows"></tbody>
-
-    <tfoot>
-     <tr>
-      <td colspan="2">စုစုပေါင်း</td>
-      <td id="sumQty">0</td>
-      <td>—</td>
-      <td id="sumRevenue">0 ကျပ်</td>
-     </tr>
-    </tfoot>
-
-   </table>
-
-  </div>
-
-  <div class="total-line">
-   <span>စုစုပေါင်း ရောင်းရငွေ</span>
-   <span id="voucherTotal">
-    0 ကျပ်
-   </span>
-  </div>
-
- </div>
-
+<div class="grid" style="margin-top:15px">
+<div class="info"><small>ရက်စွဲ</small><strong id="savedDate">မသိမ်းရသေးပါ</strong></div>
+<div class="info"><small>အချိန်</small><strong id="savedTime">မသိမ်းရသေးပါ</strong></div>
 </div>
 
-<!-- DELETE ALL -->
+<div class="tablewrap">
+<table>
+<thead>
+<tr><th>စဉ်</th><th>မုန့်အမျိုးအစား</th><th>ဦးရေ</th><th>နှုန်း</th><th>ရောင်းရငွေ</th></tr>
+</thead>
+<tbody id="rows"></tbody>
+<tfoot>
+<tr><td colspan="2">စုစုပေါင်း</td><td id="sumQty">0</td><td>—</td><td id="sumRevenue">0</td></tr>
+</tfoot>
+</table>
+</div>
+<div class="total">
+<span>စုစုပေါင်း ရောင်းရငွေ</span>
+<strong id="voucherTotal">0 ကျပ်</strong>
+</div>
+</div>
+</div>
 
 <div class="card">
-
- <button
-  id="resetBtn"
-  class="delete"
-  style="width:100%">
-  စာရင်းအားလုံး ရှင်းလင်းရန်
- </button>
-
+<button id="clearBtn" class="del" style="width:100%">စာရင်းအားလုံး ရှင်းလင်းရန်</button>
+<p style="font-size:12px;color:#697a70">လက်ရှိအရောင်းစာရင်းကိုသာ ရှင်းလင်းပါမည်။ သိမ်းထားသော ဘောင်ချာဟောင်းများ မပျက်ပါ။</p>
 </div>
-
-<!-- SAVE -->
 
 <div class="sticky">
-
- <button
-  id="saveBtn"
-  class="primary">
-  💾 Save မည် (Online သိမ်းဆည်းရန်)
- </button>
-
- <p
-  id="saveStatus"
-  class="status"
-  role="status"
-  aria-live="polite"></p>
-
-</div>
-
+<button id="saveBtn" class="primary">💾 Save မည် (ဘောင်ချာသိမ်းရန်)</button>
+<p id="status" class="status" role="status"></p>
 </div>
 </div>
+</main>
 
-<!-- FIREBASE SDK -->
-
-<script
- src="https://www.gstatic.com/firebasejs/10.12.5/firebase-app-compat.js">
-</script>
-
-<script
- src="https://www.gstatic.com/firebasejs/10.12.5/firebase-auth-compat.js">
-</script>
-
-<script
- src="https://www.gstatic.com/firebasejs/10.12.5/firebase-database-compat.js">
-</script>
-
+<script src="https://www.gstatic.com/firebasejs/10.12.5/firebase-app-compat.js"></script>
+<script src="https://www.gstatic.com/firebasejs/10.12.5/firebase-auth-compat.js"></script>
+<script src="https://www.gstatic.com/firebasejs/10.12.5/firebase-database-compat.js"></script>
 <script>
 (function(){
 "use strict";
+const $=id=>document.getElementById(id);
+const second=location.pathname.toLowerCase().includes("secondseller.html");
+const seller=second?"secondseller":"firstseller";
+const title=second?"အရောင်း ၂":"အရောင်း ၁";
+const allowedEmail=second?"secondseller@gmail.com":"firstseller@gmail.com";
+$("title").textContent=title;
+$("onlineTitle").textContent=title+" - Online စာရင်း";
+document.title=title+" - မုန့်အရောင်း";
 
-/* ELEMENT HELPER */
-
-var $=function(id){
- return document.getElementById(id);
-};
-
-/* FIREBASE CHECK */
-
-if(!window.firebase ||
- !firebase.auth ||
- !firebase.database){
-
- $("loading").textContent=
-  "Firebase SDK မဖွင့်နိုင်ပါ။ Internet စစ်ပါ။";
-
- $("loading").className="card error";
-
+if(!window.firebase){
+ $("loading").textContent="Firebase SDK မဖွင့်နိုင်ပါ";
  return;
 }
-
-/* FIREBASE CONFIG */
-
-var firebaseConfig={
-
- apiKey:
- "AIzaSyAZK7ntdtiSDZ9eC6eAr3xKDK_DGJnNVVU",
-
- authDomain:
- "seller-b4dfa.firebaseapp.com",
-
- databaseURL:
- "https://seller-b4dfa-default-rtdb.firebaseio.com",
-
- projectId:
- "seller-b4dfa",
-
- storageBucket:
- "seller-b4dfa.firebasestorage.app",
-
- messagingSenderId:
- "632319829206",
-
- appId:
- "1:632319829206:web:ae8ea88684ccb061311577",
-
- measurementId:
- "G-56VDJH0YVJ"
-
+const config={
+ apiKey:"AIzaSyAZK7ntdtiSDZ9eC6eAr3xKDK_DGJnNVVU",
+ authDomain:"seller-b4dfa.firebaseapp.com",
+ databaseURL:"https://seller-b4dfa-default-rtdb.firebaseio.com",
+ projectId:"seller-b4dfa",
+ storageBucket:"seller-b4dfa.firebasestorage.app",
+ messagingSenderId:"632319829206",
+ appId:"1:632319829206:web:ae8ea88684ccb061311577"
 };
+const app=firebase.apps.find(x=>x.name===seller+"App")||
+firebase.initializeApp(config,seller+"App");
+const auth=app.auth(),db=app.database();
+const catalogRef=db.ref("catalog");
+let catalog=[],items=[],salesRef=null,uid="",revision=0;
+let catalogReady=false,salesReady=false,online=false,dirty=false,busy=false,conflict=false;
+let shopName="",savedAt=null;
+let offCat=null,offSales=null,offConn=null;
 
-/* INITIALIZE FIREBASE */
+const id=()=> "s_"+Date.now().toString(36)+Math.random().toString(36).slice(2);
+const fresh=()=>({id:id(),productId:"",sellPrice:"",soldQty:""});
+const fmt=n=>Number(n||0).toLocaleString("en-US",{maximumFractionDigits:2});
+const money=n=>fmt(n)+" ကျပ်";
+const qty=n=>fmt(n)+" ထုပ်";
+const product=id=>catalog.find(p=>p.id===id);
+const value=n=>Number(n||0);
 
-var app;
-
-try{
-
- app=firebase.app("firstSellerApp");
-
-}catch(e){
-
- app=firebase.initializeApp(
-  firebaseConfig,
-  "firstSellerApp"
- );
-
+function message(t,bad=false){
+ $("status").textContent=t;
+ $("status").className="status"+(bad?" error":"");
 }
-
-var auth=app.auth();
-var db=app.database();
-
-/* DATABASE PATHS */
-
-var catalogRef=db.ref("catalog");
-var salesRef=null;
-
-/* VARIABLES */
-
-var catalog=[];
-var entries=[];
-
-var revision=0;
-
-var ready=false;
-var catalogReady=false;
-var salesReady=false;
-
-var dirty=false;
-var saving=false;
-var connected=false;
-var conflict=false;
-
-var shopName="";
-var lastSavedAt=null;
-
-var unsubCatalog=null;
-var unsubSales=null;
-var connCallback=null;
-
-var session=0;
-
-/* NEW ENTRY */
-
-function fresh(){
-
- return {
-
-  id:"s_"+Date.now().toString(36)+
-   Math.random().toString(36).slice(2),
-
-  productId:"",
-  sellPrice:"",
-  soldQty:""
-
- };
-
-}
-
-/* NORMALIZE CATALOG */
-
-function normalizeCatalog(arr){
-
- if(!Array.isArray(arr)){
-  return [];
- }
-
- return arr.filter(function(x){
-
-  return x&&typeof x==="object";
-
- }).map(function(x){
-
-  return {
-
-   id:String(x.id||""),
-
-   name:String(x.name||""),
-
-   baseQty:String(
-    x.baseQty!=null?x.baseQty:
-    x.qty!=null?x.qty:""
-   ),
-
-   baseCost:String(
-    x.baseCost!=null?x.baseCost:
-    x.cost!=null?x.cost:""
-   )
-
-  };
-
- }).filter(function(x){
-
-  return x.id&&x.name;
-
- });
-
-}
-
-/* NORMALIZE SALES */
-
-function normalizeEntries(arr){
-
- if(!Array.isArray(arr)){
-  return [];
- }
-
- return arr.filter(function(x){
-
-  return x&&typeof x==="object";
-
- }).map(function(x){
-
-  var productId=String(x.productId||"");
-
-  if(!productId&&x.name){
-
-   var oldName=String(x.name).trim();
-
-   var found=catalog.find(function(p){
-
-    return p.name.trim()===oldName;
-
-   });
-
-   if(found){
-    productId=found.id;
-   }
-
-  }
-
-  return {
-
-   id:String(x.id||fresh().id),
-
-   productId:productId,
-
-   sellPrice:String(
-    x.sellPrice!=null?x.sellPrice:""
-   ),
-
-   soldQty:String(
-    x.soldQty!=null?x.soldQty:
-    x.sold!=null?x.sold:""
-   )
-
-  };
-
- });
-
-}
-
-/* PRODUCT LOOKUP */
-
-function getProduct(id){
-
- return catalog.find(function(p){
-
-  return p.id===id;
-
- })||null;
-
-}
-
-/* NUMBER HELPERS */
-
-function number(v){
-
- var n=Number(v);
-
- return isFinite(n)?
-  Math.max(0,n):0;
-
-}
-
-function fmt(v){
-
- return Number(v).toLocaleString(
-  "en-US",
-  {maximumFractionDigits:2}
- );
-
-}
-
-function money(v){
-
- return fmt(v)+" ကျပ်";
-
-}
-
-function packet(v){
-
- return fmt(v)+" ထုပ်";
-
-}
-
-/* STATUS */
-
-function status(text,error){
-
- $("saveStatus").textContent=text;
-
- $("saveStatus").className=
-  "status"+(error?" error":"");
-
-}
-
 function changed(){
-
  dirty=true;
-
- status(
-  "ပြင်ဆင်ထားပါသည်။ Save နှိပ်ပါ။"
- );
-
+ message("ပြင်ဆင်ထားပါသည်။ Save နှိပ်ပါ။");
 }
-
-/* DISPLAY LINE */
-
-function line(name,value){
-
- var row=document.createElement("div");
- row.className="line";
-
- var a=document.createElement("span");
- var b=document.createElement("strong");
-
- a.textContent=name;
- b.textContent=value;
-
- row.appendChild(a);
- row.appendChild(b);
-
- return row;
-
+function normalizeCatalog(data){
+ return (Array.isArray(data)?data:[]).filter(Boolean).map(x=>({
+  id:String(x.id||""),name:String(x.name||""),
+  baseQty:Number(x.baseQty||0),baseCost:Number(x.baseCost||0)
+ })).filter(x=>x.id&&x.name);
 }
-
-/* DATE AND TIME */
-
-function showSavedTime(timestamp){
-
- if(!timestamp){
-
-  $("savedDate").textContent=
-   "မသိမ်းရသေးပါ";
-
-  $("savedTime").textContent=
-   "မသိမ်းရသေးပါ";
-
+function normalizeSales(data){
+ return (Array.isArray(data)?data:[]).filter(Boolean).map(x=>({
+  id:String(x.id||id()),
+  productId:String(x.productId||""),
+  sellPrice:String(x.sellPrice??""),
+  soldQty:String(x.soldQty??"")
+ }));
+}
+function showTime(t){
+ if(!t){
+  $("savedDate").textContent="မသိမ်းရသေးပါ";
+  $("savedTime").textContent="မသိမ်းရသေးပါ";
   return;
  }
-
- var date=new Date(Number(timestamp));
-
- if(isNaN(date.getTime())){
-
-  $("savedDate").textContent=
-   "မရှိသေးပါ";
-
-  $("savedTime").textContent=
-   "မရှိသေးပါ";
-
-  return;
- }
-
- try{
-
-  $("savedDate").textContent=
-   date.toLocaleDateString("en-GB",{
-    timeZone:"Asia/Yangon",
-    day:"2-digit",
-    month:"2-digit",
-    year:"numeric"
-   });
-
-  $("savedTime").textContent=
-   date.toLocaleTimeString("en-US",{
-    timeZone:"Asia/Yangon",
-    hour:"2-digit",
-    minute:"2-digit",
-    second:"2-digit",
-    hour12:true
-   });
-
- }catch(e){
-
-  $("savedDate").textContent=
-   date.toLocaleDateString();
-
-  $("savedTime").textContent=
-   date.toLocaleTimeString();
-
- }
-
+ const d=new Date(Number(t));
+ $("savedDate").textContent=d.toLocaleDateString("en-GB",{timeZone:"Asia/Yangon"});
+ $("savedTime").textContent=d.toLocaleTimeString("en-US",{timeZone:"Asia/Yangon",hour12:true});
 }
-
-/* SHOP NAME VALIDATION */
-
-function validateShop(){
-
- var name=$("shopName").value.trim();
-
- if(name===""){
-
-  $("shopName").classList.add(
-   "input-error"
-  );
-
-  $("shopWarning").hidden=false;
-
-  status(
-   "❌ ဆိုင်အမည် မဖြည့်ထားသဖြင့် Save မလုပ်နိုင်ပါ။",
-   true
-  );
-
-  $("shopName").scrollIntoView({
-   behavior:"smooth",
-   block:"center"
-  });
-
-  $("shopName").focus();
-
-  return false;
-
- }
-
- $("shopName").classList.remove(
-  "input-error"
- );
-
- $("shopWarning").hidden=true;
-
- return true;
-
-}
-
-/* SHOP NAME INPUT */
-
-$("shopName").oninput=function(){
-
- shopName=this.value;
-
- if(this.value.trim()!==""){
-
-  this.classList.remove("input-error");
-
-  $("shopWarning").hidden=true;
-
- }
-
- changed();
-
-};
-
-/* APPLY SAVED DATA */
-
-function applyMetadata(data){
-
- shopName=String(
-  data&&data.shopName||""
- );
-
- lastSavedAt=
-  data&&(data.savedAt||data.updatedAt)||null;
-
+function applySales(data){
+ revision=Number(data?.revision)||0;
+ items=normalizeSales(data?.items);
+ if(!items.length)items=[fresh()];
+ shopName=String(data?.shopName||"");
+ savedAt=data?.savedAt||null;
  $("shopName").value=shopName;
-
- $("shopName").classList.remove(
-  "input-error"
- );
-
- $("shopWarning").hidden=true;
-
- showSavedTime(lastSavedAt);
-
+ showTime(savedAt);
+ dirty=false;conflict=false;
+ render();
 }
-
-/* FORM FIELD */
-
-function makeField(labelText,value,readonly){
-
- var box=document.createElement("div");
- var label=document.createElement("label");
- var input=document.createElement("input");
-
- label.textContent=labelText;
- input.value=value;
-
- if(readonly){
-
-  input.type="text";
-  input.readOnly=true;
-
- }else{
-
-  input.type="number";
-  input.min="0";
-  input.step="any";
-
+function field(title,val,readonly,onChange,integer=false){
+ const div=document.createElement("div");
+ const label=document.createElement("label"),input=document.createElement("input");
+ label.textContent=title;input.value=val;
+ input.type=readonly?"text":"number";
+ if(readonly)input.readOnly=true;
+ else{
+  input.min="0";input.step=integer?"1":"any";
+  input.oninput=()=>onChange(input.value);
  }
-
- box.appendChild(label);
- box.appendChild(input);
-
- return {
-  box:box,
-  input:input
- };
-
+ div.append(label,input);
+ return div;
 }
-
-/* RENDER ITEMS */
-
+function line(text,amount){
+ const row=document.createElement("div");row.className="line";
+ const a=document.createElement("span"),b=document.createElement("strong");
+ a.textContent=text;b.textContent=amount;row.append(a,b);return row;
+}
 function render(){
-
- var area=$("items");
-
- area.innerHTML="";
-
- entries.forEach(function(entry,index){
-
-  var product=getProduct(entry.productId);
-
-  var card=document.createElement("div");
+ $("items").replaceChildren();
+ items.forEach((entry,i)=>{
+  const p=product(entry.productId),card=document.createElement("div");
   card.className="card";
-
-  var top=document.createElement("div");
-  top.className="top";
-
-  var title=document.createElement("h3");
-  title.textContent="စဉ် "+(index+1);
-
-  var del=document.createElement("button");
-  del.className="delete";
-  del.textContent="ဖျက်ရန်";
-
-  del.onclick=function(){
-
-   if(!confirm(
-    "ဒီမုန့်အရောင်းစာရင်း ဖျက်မှာ သေချာပါသလား။"
-   )){
-    return;
-   }
-
-   entries=entries.filter(function(x){
-
-    return x.id!==entry.id;
-
-   });
-
-   if(!entries.length){
-    entries=[fresh()];
-   }
-
-   changed();
-   render();
-
+  const top=document.createElement("div");top.className="flex";
+  const h=document.createElement("h3");h.textContent="စဉ် "+(i+1);
+  const del=document.createElement("button");del.className="del";del.textContent="ဖျက်ရန်";
+  del.onclick=()=>{
+   if(!confirm("ဒီစဉ်ကို ဖျက်မလား။"))return;
+   items=items.filter(x=>x.id!==entry.id);
+   if(!items.length)items=[fresh()];
+   changed();render();
   };
-
-  top.appendChild(title);
-  top.appendChild(del);
-
-  card.appendChild(top);
-
-  /* PRODUCT DROPDOWN */
-
-  var label=document.createElement("label");
-
-  label.textContent=
-   "မုန့်အမျိုးအစား ရွေးရန်";
-
-  var select=document.createElement("select");
-
-  var placeholder=
-   document.createElement("option");
-
-  placeholder.value="";
-
-  placeholder.textContent=
-   "မုန့်အမျိုးအစား ရွေးပါ";
-
-  select.appendChild(placeholder);
-
-  catalog.forEach(function(p){
-
-   var option=document.createElement("option");
-
-   option.value=p.id;
-   option.textContent=p.name;
-
-   select.appendChild(option);
-
-  });
-
-  select.value=product?product.id:"";
-
-  select.onchange=function(){
-
-   entry.productId=this.value;
-
-   changed();
-   render();
-
-  };
-
-  card.appendChild(label);
-  card.appendChild(select);
-
-  if(entry.productId&&!product){
-
-   var warning=document.createElement("p");
-   warning.className="warning";
-
-   warning.textContent=
-    "ဒီမုန့်ကို ပင်မစာရင်းမှာ မတွေ့ပါ။";
-
-   card.appendChild(warning);
-
-  }
-
-  /* ORIGINAL READONLY VALUES */
-
-  var baseQty=product?
-   number(product.baseQty):0;
-
-  var baseCost=product?
-   number(product.baseCost):0;
-
-  var baseGrid=document.createElement("div");
-  baseGrid.className="grid";
-
-  baseGrid.appendChild(
-   makeField(
-    "ပင်မမှ မူရင်းအထုပ်",
-    packet(baseQty),
-    true
-   ).box
+  top.append(h,del);
+  const label=document.createElement("label");label.textContent="မုန့်အမျိုးအစား ရွေးရန်";
+  const select=document.createElement("select");
+  select.add(new Option("မုန့်အမျိုးအစား ရွေးပါ",""));
+  catalog.forEach(p=>select.add(new Option(p.name,p.id)));
+  select.value=p?p.id:"";
+  select.onchange=()=>{entry.productId=select.value;changed();render()};
+  const base=document.createElement("div");base.className="grid";
+  base.append(
+   field("ပင်မမှ မူရင်းအထုပ်",qty(p?.baseQty),true),
+   field("ပင်မမှ မူရင်းဈေး",money(p?.baseCost),true)
   );
-
-  baseGrid.appendChild(
-   makeField(
-    "ပင်မမှ မူရင်းဈေး",
-    money(baseCost),
-    true
-   ).box
+  const sales=document.createElement("div");sales.className="grid";
+  sales.append(
+   field("တစ်ထုပ်ရောင်းဈေး (ကျပ်)",entry.sellPrice,false,v=>{entry.sellPrice=v;changed();calculate()}),
+   field("ရောင်းပြီးအထုပ်",entry.soldQty,false,v=>{entry.soldQty=v;changed();calculate()},true)
   );
-
-  /* SELLER EDITABLE VALUES */
-
-  var sellerGrid=document.createElement("div");
-  sellerGrid.className="grid";
-
-  var priceField=makeField(
-   "တစ်ထုပ်ရောင်းဈေး (ကျပ်)",
-   entry.sellPrice,
-   false
-  );
-
-  var soldField=makeField(
-   "ရောင်းပြီးအထုပ်",
-   entry.soldQty,
-   false
-  );
-
-  soldField.input.step="1";
-
-  priceField.input.oninput=function(){
-
-   entry.sellPrice=this.value;
-
-   changed();
-   calculate();
-
-  };
-
-  soldField.input.oninput=function(){
-
-   entry.soldQty=this.value;
-
-   changed();
-   calculate();
-
-  };
-
-  sellerGrid.appendChild(priceField.box);
-  sellerGrid.appendChild(soldField.box);
-
-  var result=document.createElement("div");
-
-  result.className="result";
-  result.id="result-"+entry.id;
-
-  card.appendChild(baseGrid);
-  card.appendChild(sellerGrid);
-  card.appendChild(result);
-
-  area.appendChild(card);
-
+  const result=document.createElement("div");result.className="result";result.id="result-"+entry.id;
+  card.append(top,label,select,base,sales,result);
+  $("items").append(card);
  });
-
  calculate();
-
 }
-
-/* CALCULATE */
-
+function snapshotRows(){
+ return items.filter(e=>product(e.productId)).map(e=>{
+  const p=product(e.productId);
+  const count=value(e.soldQty),price=value(e.sellPrice);
+  return {
+   productId:p.id,name:p.name,
+   qty:count,rate:price,
+   revenue:count*price,
+   baseCost:p.baseCost,
+   profit:count*(price-p.baseCost)
+  };
+ });
+}
 function calculate(){
-
- var totalSold=0;
- var totalRevenue=0;
- var totalProfit=0;
-
- $("salesRows").innerHTML="";
- $("revenueDetails").innerHTML="";
-
- entries.forEach(function(entry,index){
-
-  var product=getProduct(entry.productId);
-
-  var qty=number(entry.soldQty);
-  var price=number(entry.sellPrice);
-
-  var baseQty=product?
-   number(product.baseQty):0;
-
-  var baseCost=product?
-   number(product.baseCost):0;
-
-  var revenue=product?
-   qty*price:0;
-
-  var soldCost=product?
-   qty*baseCost:0;
-
-  var profit=revenue-soldCost;
-
-  var remaining=baseQty-qty;
-
-  var name=product?
-   product.name:"မရွေးရသေးပါ";
-
-  if(product){
-
-   totalSold+=qty;
-   totalRevenue+=revenue;
-   totalProfit+=profit;
-
+ const rows=snapshotRows();
+ let sold=0,revenue=0,profit=0;
+ $("rows").replaceChildren();
+ items.forEach((entry,i)=>{
+  const p=product(entry.productId);
+  const count=value(entry.soldQty),rate=value(entry.sellPrice);
+  const rev=p?count*rate:0,pr=p?count*(rate-p.baseCost):0;
+  if(p){sold+=count;revenue+=rev;profit+=pr}
+  const el=$("result-"+entry.id);
+  if(el){
+   el.replaceChildren(
+    line("ရောင်းရငွေ",money(rev)),
+    line("ရောင်းပြီးအထုပ်၏ မူရင်းကုန်ကျငွေ",money(p?count*p.baseCost:0)),
+    line("လက်ကျန်အထုပ်",qty(p?p.baseQty-count:0)),
+    line("အမြတ် / အရှုံး",money(pr))
+   );
   }
-
-  var result=$("result-"+entry.id);
-
-  if(result){
-
-   result.innerHTML="";
-
-   result.appendChild(
-    line("ရောင်းရငွေ",money(revenue))
-   );
-
-   result.appendChild(
-    line(
-     "ရောင်းပြီးအထုပ်၏ မူရင်းကုန်ကျငွေ",
-     money(soldCost)
-    )
-   );
-
-   result.appendChild(
-    line(
-     "လက်ကျန်အထုပ်",
-     packet(remaining)
-    )
-   );
-
-   result.appendChild(
-    line(
-     "အမြတ် / အရှုံး",
-     money(profit)
-    )
-   );
-
-   if(product&&qty>baseQty){
-
-    var warning=document.createElement("p");
-    warning.className="warning";
-
-    warning.textContent=
-     "ရောင်းပြီးအထုပ်သည် မူရင်းအထုပ်ထက် များနေပါသည်။";
-
-    result.appendChild(warning);
-
-   }
-
-  }
-
-  /* SUMMARY LINE */
-
-  $("revenueDetails").appendChild(
-   line(name,money(revenue))
-  );
-
-  /* VOUCHER TABLE ROW */
-
-  var tr=document.createElement("tr");
-
-  [
-   String(index+1),
-   name,
-   fmt(product?qty:0),
-   money(price),
-   money(revenue)
-  ].forEach(function(value){
-
-   var td=document.createElement("td");
-
-   td.textContent=value;
-
-   tr.appendChild(td);
-
+  const tr=document.createElement("tr");
+  [i+1,p?.name||"မရွေးရသေး",p?fmt(count):"0",money(rate),money(rev)].forEach(t=>{
+   const td=document.createElement("td");td.textContent=t;tr.append(td);
   });
-
-  $("salesRows").appendChild(tr);
-
+  $("rows").append(tr);
  });
-
- $("totalSold").textContent=
-  packet(totalSold);
-
- $("totalRevenue").textContent=
-  money(totalRevenue);
-
- $("totalProfit").textContent=
-  money(totalProfit);
-
- $("sumQty").textContent=
-  fmt(totalSold);
-
- $("sumRevenue").textContent=
-  money(totalRevenue);
-
- $("voucherTotal").textContent=
-  money(totalRevenue);
-
+ $("totalQty").textContent=qty(sold);
+ $("totalRevenue").textContent=money(revenue);
+ $("totalProfit").textContent=money(profit);
+ $("sumQty").textContent=fmt(sold);
+ $("sumRevenue").textContent=money(revenue);
+ $("voucherTotal").textContent=money(revenue);
 }
-
-/* ADD ITEM */
-
-$("addBtn").onclick=function(){
-
- if(!ready||saving){
-  return;
- }
-
- entries.push(fresh());
-
+$("addBtn").onclick=()=>{if(!catalogReady||!salesReady||busy)return;items.push(fresh());changed();render()};
+$("shopName").oninput=()=>{
+ $("shopError").hidden=!!$("shopName").value.trim();
+ $("shopName").classList.remove("invalid");
  changed();
- render();
-
 };
-
-/* LOGIN */
-
-$("loginForm").onsubmit=function(e){
-
+$("loginForm").onsubmit=async e=>{
  e.preventDefault();
-
- var button=this.querySelector("button");
-
- button.disabled=true;
-
- $("loginStatus").textContent=
-  "Login ဝင်နေပါသည်...";
-
- auth.signInWithEmailAndPassword(
-
-  $("email").value.trim(),
-
-  $("password").value
-
- ).then(function(){
-
+ try{
+  await auth.signInWithEmailAndPassword($("email").value.trim(),$("password").value);
   $("password").value="";
-
-  $("loginStatus").textContent="";
-
- }).catch(function(error){
-
-  $("loginStatus").textContent=
-   error.code||error.message;
-
- }).then(function(){
-
-  button.disabled=false;
-
- });
-
+ }catch(err){$("loginStatus").textContent=err.message}
 };
-
-/* DATA READY */
-
-function maybeStart(){
-
- if(!catalogReady||!salesReady){
-  return;
- }
-
- if(!entries.length){
-  entries=[fresh()];
- }
-
- ready=true;
-
- render();
-
- status("Online စာရင်း ရရှိပြီးပါပြီ။");
-
-}
-
-/* AUTH STATE */
-
-function startData(user){
-
- session++;
-
- var currentSession=session;
-
- if(unsubCatalog){
-
-  unsubCatalog();
-  unsubCatalog=null;
-
- }
-
- if(unsubSales){
-
-  unsubSales();
-  unsubSales=null;
-
- }
-
- if(connCallback){
-
-  db.ref(".info/connected").off(
-   "value",connCallback
-  );
-
-  connCallback=null;
-
- }
-
- catalog=[];
- entries=[];
-
- revision=0;
-
- ready=false;
- catalogReady=false;
- salesReady=false;
-
- dirty=false;
- saving=false;
- connected=false;
- conflict=false;
-
- shopName="";
- lastSavedAt=null;
-
- salesRef=null;
-
- $("shopName").value="";
-
- $("shopWarning").hidden=true;
-
- $("shopName").classList.remove(
-  "input-error"
- );
-
- showSavedTime(null);
-
- $("conflictBox").hidden=true;
+auth.onAuthStateChanged(user=>{
+ if(offCat)offCat();if(offSales)offSales();if(offConn)offConn();
+ catalogReady=false;salesReady=false;online=false;dirty=false;conflict=false;
  $("loading").hidden=true;
-
- if(!user){
-
-  $("loginBox").hidden=false;
-  $("appBox").hidden=true;
-
+ $("loginBox").hidden=!!user;
+ $("appBox").hidden=!user;
+ if(!user)return;
+ uid=user.uid;
+ $("account").textContent=user.email||"";
+ if(user.email!==allowedEmail){
+  $("connection").textContent="ဒီစာမျက်နှာအတွက် Seller Account မဟုတ်ပါ။";
+  $("connection").className="status error";
+  $("saveBtn").disabled=true;
+  $("clearBtn").disabled=true;
   return;
-
  }
-
- $("loginBox").hidden=true;
- $("appBox").hidden=false;
-
- $("account").textContent=user.email;
-
- status("Online စာရင်း ဖတ်နေပါသည်...");
-
- salesRef=db.ref(
-  "users/"+user.uid+"/sales"
- );
-
- /* CONNECTION LISTENER */
-
- connCallback=function(snap){
-
-  if(session!==currentSession)return;
-
-  connected=snap.val()===true;
-
-  $("connection").textContent=connected
-   ?"● Firebase Online ချိတ်ဆက်ထားသည်"
-   :"● Firebase ချိတ်ဆက်မှု မရှိပါ";
-
+ $("saveBtn").disabled=false;$("clearBtn").disabled=false;
+ salesRef=db.ref("users/"+uid+"/sales");
+ const onConn=s=>{
+  online=s.val()===true;
+  $("connection").textContent=online?"● Connected":"● Disconnected";
  };
-
- db.ref(".info/connected").on(
-  "value",connCallback
- );
-
- /* CATALOG LISTENER */
-
- var catalogCallback=function(snap){
-
-  if(session!==currentSession)return;
-
-  var data=snap.val();
-
-  catalog=normalizeCatalog(
-   data&&data.items
-  );
-
+ db.ref(".info/connected").on("value",onConn);
+ offConn=()=>db.ref(".info/connected").off("value",onConn);
+ const onCat=s=>{
+  catalog=normalizeCatalog(s.val()?.items);
   catalogReady=true;
-
-  if(!ready){
-
-   maybeStart();
-
-  }else{
-
-   render();
-
-  }
-
+  if(salesReady)render();
  };
-
- catalogRef.on(
-  "value",
-  catalogCallback,
-  function(error){
-
-   if(session!==currentSession)return;
-
-   status(
-    "Catalog Error: "+
-    (error.code||error.message),
-    true
-   );
-
-  }
- );
-
- unsubCatalog=function(){
-
-  catalogRef.off(
-   "value",
-   catalogCallback
-  );
-
- };
-
- /* SALES LISTENER */
-
- var currentRef=salesRef;
-
- var salesCallback=function(snap){
-
-  if(session!==currentSession)return;
-
-  var data=snap.val();
-
-  var remoteRevision=
-   Number(data&&data.revision)||0;
-
-  if(!salesReady){
-
-   entries=normalizeEntries(
-    data&&data.items
-   );
-
-   revision=remoteRevision;
-
-   applyMetadata(data);
-
-   salesReady=true;
-
-   maybeStart();
-
-   return;
-
-  }
-
-  if(saving)return;
-
+ catalogRef.on("value",onCat,e=>message("Catalog: "+e.message,true));
+ offCat=()=>catalogRef.off("value",onCat);
+ const onSales=s=>{
+  const data=s.val(),remote=Number(data?.revision)||0;
+  if(!salesReady){applySales(data);salesReady=true;return}
+  if(busy)return;
   if(dirty){
-
-   if(remoteRevision!==revision){
-
-    conflict=true;
-
-    $("conflictBox").hidden=false;
-
-    status(
-     "အခြားဖုန်းမှာ စာရင်းပြောင်းထားပါသည်။",
-     true
-    );
-
-   }
-
-   return;
-
-  }
-
-  revision=remoteRevision;
-
-  entries=normalizeEntries(
-   data&&data.items
-  );
-
-  applyMetadata(data);
-
-  conflict=false;
-
-  $("conflictBox").hidden=true;
-
-  render();
-
+   if(remote!==revision){conflict=true;message("အခြားဖုန်းက စာရင်းပြောင်းထားသည်။ Refresh လုပ်ပါ။",true)}
+  }else applySales(data);
  };
-
- currentRef.on(
-  "value",
-  salesCallback,
-  function(error){
-
-   if(session!==currentSession)return;
-
-   status(
-    "Sales Error: "+
-    (error.code||error.message),
-    true
-   );
-
+ salesRef.on("value",onSales,e=>message("Sales: "+e.message,true));
+ offSales=()=>salesRef.off("value",onSales);
+});
+async function write(clear){
+ if(busy)return;
+ if(!online||!salesReady||!catalogReady||conflict){
+  message("Connection / စာရင်းအခြေအနေ စစ်ပါ။",true);return;
+ }
+ const shop=$("shopName").value.trim();
+ if(!shop){
+  $("shopError").hidden=false;
+  $("shopName").classList.add("invalid");
+  $("shopName").scrollIntoView({behavior:"smooth",block:"center"});
+  $("shopName").focus();
+  message("ဆိုင်အမည် အရင်ဖြည့်ပါ။",true);return;
+ }
+ let valid=[];
+ if(!clear){
+  valid=items.filter(e=>e.productId||e.sellPrice!==""||e.soldQty!=="");
+  if(!valid.length){message("အရောင်းစာရင်း အနည်းဆုံးတစ်မျိုး ဖြည့်ပါ။",true);return}
+  for(const e of valid){
+   if(!product(e.productId)||
+      e.sellPrice===""||e.soldQty===""||
+      !Number.isFinite(Number(e.sellPrice))||Number(e.sellPrice)<0||
+      !Number.isInteger(Number(e.soldQty))||Number(e.soldQty)<0){
+    message("မုန့်အမျိုးအစား၊ ရောင်းဈေး၊ အထုပ်အရေအတွက် စစ်ပါ။",true);return;
+   }
   }
- );
-
- unsubSales=function(){
-
-  currentRef.off(
-   "value",
-   salesCallback
-  );
-
+ }
+ busy=true;
+ $("saveBtn").disabled=true;$("clearBtn").disabled=true;
+ message(clear?"စာရင်းရှင်းလင်းနေပါသည်...":"ဘောင်ချာသိမ်းဆည်းနေပါသည်...");
+ const timestamp=firebase.database.ServerValue.TIMESTAMP;
+ const updates={};
+ const next={
+  revision:revision+1,
+  shopName:shop,
+  items:valid,
+  savedAt:timestamp
  };
-
-}
-
-auth.onAuthStateChanged(
- startData,
- function(error){
-
-  $("loading").textContent=
-   "Firebase Login Error: "+
-   (error.code||error.message);
-
-  $("loading").hidden=false;
-
+ updates["users/"+uid+"/sales"]=next;
+ if(!clear){
+  const rows=snapshotRows();
+  const receiptId=db.ref("receipts/"+seller).push().key;
+  updates["receipts/"+seller+"/"+receiptId]={
+   shopName:shop,
+   savedAt:timestamp,
+   seller:seller,
+   sellerUid:uid,
+   items:rows,
+   totalQty:rows.reduce((a,x)=>a+x.qty,0),
+   totalRevenue:rows.reduce((a,x)=>a+x.revenue,0),
+   totalProfit:rows.reduce((a,x)=>a+x.profit,0)
+  };
  }
-);
-
-/* ONLINE SAVE */
-
-async function saveOnline(newEntries,clearAll){
-
- if(saving)return;
-
- /* SHOP NAME REQUIRED */
-
- if(!validateShop()){
-  return;
- }
-
- if(!ready||!salesRef||!connected){
-
-  status(
-   "Firebase Online မချိတ်ဆက်သေးပါ။",
-   true
-  );
-
-  return;
-
- }
-
- if(conflict){
-
-  status(
-   "အခြားဖုန်းမှာ စာရင်းပြောင်းထားပါသည်။ "+
-   "Online စာရင်းပြန်ယူပါ။",
-   true
-  );
-
-  return;
-
- }
-
- /* VALIDATION */
-
- if(!clearAll){
-
-  for(var i=0;i<newEntries.length;i++){
-
-   var entry=newEntries[i];
-
-   var empty=
-    !entry.productId &&
-    entry.sellPrice==="" &&
-    entry.soldQty==="";
-
-   if(empty)continue;
-
-   var product=getProduct(entry.productId);
-
-   if(!product){
-
-    status(
-     "စဉ် "+(i+1)+
-     " မှာ မုန့်အမျိုးအစား ရွေးပါ။",
-     true
-    );
-
-    return;
-
-   }
-
-   var qty=Number(entry.soldQty);
-   var price=Number(entry.sellPrice);
-
-   if(
-    !Number.isInteger(qty)||
-    qty<0||
-    !isFinite(price)||
-    price<0
-   ){
-
-    status(
-     "ရောင်းဈေးနှင့် ရောင်းပြီးအထုပ်ကို စစ်ပါ။",
-     true
-    );
-
-    return;
-
-   }
-
-  }
-
- }
-
- var currentShop=
-  $("shopName").value.trim();
-
- var validEntries=clearAll?[]:
-  newEntries.filter(function(e){
-
-   return e.productId ||
-    e.sellPrice!=="" ||
-    e.soldQty!=="";
-
-  });
-
- saving=true;
-
- $("saveBtn").disabled=true;
- $("resetBtn").disabled=true;
-
- status(
-  "Firebase Online သိမ်းဆည်းနေပါသည်..."
- );
-
- var expectedRevision=revision;
-
- var currentSession=session;
-
- var currentRef=salesRef;
-
- var payload=JSON.parse(
-  JSON.stringify(validEntries)
- );
-
  try{
-
-  var result=await currentRef.transaction(
-
-   function(current){
-
-    var currentRevision=
-     Number(current&&current.revision)||0;
-
-    if(currentRevision!==expectedRevision){
-     return;
-    }
-
-    return {
-
-     revision:currentRevision+1,
-
-     shopName:currentShop,
-
-     items:payload,
-
-     savedAt:
-      firebase.database.ServerValue.TIMESTAMP,
-
-     updatedAt:
-      firebase.database.ServerValue.TIMESTAMP
-
-    };
-
-   },
-
-   undefined,
-
-   false
-
-  );
-
-  if(currentSession!==session)return;
-
-  if(!result.committed){
-
-   conflict=true;
-
-   $("conflictBox").hidden=false;
-
-   status(
-    "အခြားဖုန်းမှာ စာရင်းပြောင်းထားသဖြင့် Save မလုပ်ခဲ့ပါ။",
-    true
-   );
-
-  }else{
-
-   var data=result.snapshot.val();
-
-   revision=Number(
-    data.revision
-   )||0;
-
-   entries=normalizeEntries(data.items);
-
-   if(!entries.length){
-    entries=[fresh()];
-   }
-
-   applyMetadata(data);
-
-   dirty=false;
-   conflict=false;
-
-   $("conflictBox").hidden=true;
-
-   render();
-
-   status(
-    clearAll
-    ?"✓ အရောင်းစာရင်း ရှင်းလင်းပြီးပါပြီ။"
-    :"✓ ဆိုင်အမည်၊ ရက်စွဲ၊ အချိန်နှင့် အရောင်းစာရင်း သိမ်းပြီးပါပြီ။"
-   );
-
-  }
-
- }catch(error){
-
-  if(currentSession===session){
-
-   status(
-    "Save Error: "+
-    (error.code||error.message),
-    true
-   );
-
-  }
-
+  // လက်ရှိစာရင်းနှင့် ဘောင်ချာကို atomic write
+  await db.ref().update(updates);
+  const snap=await salesRef.once("value");
+  applySales(snap.val());
+  message(clear?
+   "✓ လက်ရှိစာရင်း ရှင်းလင်းပြီးပါပြီ။ ဘောင်ချာဟောင်းများ ကျန်ရှိပါသည်။":
+   "✓ ဘောင်ချာအသစ်နှင့် အရောင်းစာရင်း Save ပြီးပါပြီ။");
+ }catch(e){
+  conflict=true;
+  message("Save Error: "+e.message+" — Refresh လုပ်ပြီး ပြန်စစ်ပါ။",true);
  }finally{
-
-  if(currentSession===session){
-
-   saving=false;
-
-   $("saveBtn").disabled=false;
-   $("resetBtn").disabled=false;
-
-  }
-
+  busy=false;$("saveBtn").disabled=false;$("clearBtn").disabled=false;
  }
-
 }
-
-/* SAVE BUTTON */
-
-$("saveBtn").onclick=function(){
-
- saveOnline(entries,false);
-
+$("saveBtn").onclick=()=>write(false);
+$("clearBtn").onclick=()=>{
+ if(confirm("လက်ရှိအရောင်းစာရင်းကို ရှင်းလင်းမလား။ ဘောင်ချာဟောင်း မပျက်ပါ။"))write(true);
 };
-
-/* DELETE ALL */
-
-$("resetBtn").onclick=function(){
-
- if(!confirm(
-  "အရောင်း ၁ စာရင်းအားလုံးကို "+
-  "Firebase မှပါ ရှင်းလင်းမှာ သေချာပါသလား။"
- )){
-  return;
- }
-
- // ဆိုင်အမည်ကို ဆက်ထားမည်။
- // အရောင်းစာရင်းကိုသာ ဖျက်မည်။
-
- saveOnline([],true);
-
-};
-
-/* RELOAD ONLINE */
-
-$("reloadBtn").onclick=async function(){
-
- if(!salesRef||saving)return;
-
- if(!confirm(
-  "မသိမ်းရသေးသောစာရင်း ပျောက်နိုင်သည်။ "+
-  "Online စာရင်းပြန်ယူမလား။"
- ))return;
-
- var currentSession=session;
-
- try{
-
-  var snap=await salesRef.once("value");
-
-  if(currentSession!==session)return;
-
-  var data=snap.val();
-
-  revision=Number(
-   data&&data.revision
-  )||0;
-
-  entries=normalizeEntries(
-   data&&data.items
-  );
-
-  if(!entries.length){
-   entries=[fresh()];
-  }
-
-  applyMetadata(data);
-
-  dirty=false;
-  conflict=false;
-
-  $("conflictBox").hidden=true;
-
-  render();
-
-  status(
-   "Online စာရင်း ပြန်ယူပြီးပါပြီ။"
-  );
-
- }catch(error){
-
-  status(
-   "Online စာရင်း ပြန်ယူမရပါ: "+
-   error.message,
-   true
-  );
-
- }
-
-};
-
-/* UNSAVED CHANGES WARNING */
-
-window.addEventListener(
- "beforeunload",
- function(e){
-
-  if(dirty){
-
-   e.preventDefault();
-
-   e.returnValue="";
-
-  }
-
- }
-);
-
+window.addEventListener("beforeunload",e=>{
+ if(dirty){e.preventDefault();e.returnValue=""}
+});
 })();
 </script>
-
 </body>
 </html>
